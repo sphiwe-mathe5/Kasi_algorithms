@@ -1,0 +1,235 @@
+{% load crispy_forms_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'images/IMG_26.png' %}">
+    <title>Profile Info</title>
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+          }
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 300px;
+            background-color: #3079ee;
+            color: white;
+            padding: 20px;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+        .profile-section {
+            margin-bottom: 30px;
+        }
+        .account-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .nav-link {
+            color: white;
+            padding: 10px 0;
+            display: block;
+        }
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .content-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .form-button {
+            background-color: #3079ee;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-button:hover {
+            background-color: #2868c7;
+        }
+        .logout-button {
+            background-color: #dc3545;
+        }
+        .logout-button:hover {
+            background-color: #c82333;
+        }
+        .nav-link {
+            color: white;
+            padding: 10px 0;
+            display: block;
+            text-decoration: none;
+        }
+          
+        .form-container {
+            display: flex;
+            max-width: 400px;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          }
+          
+        .form-content {
+            width: 100%;
+            padding: 1.5rem;
+          }
+          
+        .login-form {
+            display: flex;
+            flex-direction: column;
+          }
+          
+        .form-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+          }
+          
+        .form-group {
+            margin-top: 1.5rem;
+          }
+          
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            box-sizing: border-box;
+          }
+          
+        .btn-submit {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-transform: uppercase;
+            width: 100%;
+            margin-top: 1rem;
+          }
+        fieldset {
+            border: none; /* Remove border */
+          }
+        .btn-submit:hover {
+            background-color: #0056b3;
+          }
+          
+        .form-description {
+            width: 40%;
+            padding: 2rem;
+            background-color: #e9f4ff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+          
+        .form-description h3 {
+            font-size: 1.5rem;
+            color: #007bff;
+            margin-bottom: 0.5rem;
+          }
+          
+        .form-description p {
+            font-size: 0.9rem;
+            color: #333;
+            line-height: 1.4;
+          }
+          
+        .footer-text {
+            margin-top: 1rem;
+            text-align: center;
+          }
+          
+        .footer-text a {
+            color: #007bff;
+            text-decoration: none;
+        }
+          
+        .footer-text a:hover {
+            text-decoration: underline;
+        }
+          
+        @media (max-width: 768px) {
+            .form-container {
+              flex-direction: column;
+        }
+          
+        .form-content,
+        .form-description {
+              width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <div class="profile-section">
+                <img class="account-img" src="{{ user.profile.image.url }}" alt="User Profile Picture">
+                <h4>{{ user.username }}</h4>
+                <p>{{ user.email }}</p>
+            </div>
+            <nav>
+                <a href="{% url 'index' %}" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                {% if user.is_staff %}
+                <a href="#" class="nav-link"><i class="fas fa-envelope"></i> Send Email</a>
+                {% endif %}
+            </nav>
+        </div>
+        <div class="main-content">
+            <div class="content-card">
+                <h2>Hello {{ user.username }}</h2>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4"></legend>
+                        {{ u_form.as_p }}
+                        {{ p_form.as_p }}
+                    </fieldset>
+                    {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                    {% endif %}
+                    <div class="form-group">
+                        <button class="form-button" type="submit">Update Profile</button>
+                    </div>
+                </form>
+            </div>
+            <div class="content-card">
+                <h3>Actions</h3>
+                <form method="POST" action="{% url 'logout' %}" class="logout-form">
+                    {% csrf_token %}
+                    <button class="form-button logout-button" type="submit">Logout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

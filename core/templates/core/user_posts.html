@@ -1,0 +1,319 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'images/KasiAlgo2.png' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
+    <title>Kasi Algorithms</title>
+</head>
+<style>
+    .container h2{
+      margin: 0 2.5rem;
+      font-size: 20px;
+    }
+    .post-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 40px; 
+        margin-right: 0rem;
+    }
+    .post-card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        overflow: hidden;
+        transition: box-shadow 0.3s ease;
+        padding: 15px;
+        width: 110%;
+    }
+    .post-card:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .post-thumbnail img {
+        display: block;
+        width: 95%; 
+        height: 200px; 
+        object-fit: cover; 
+        border-radius: 8px;
+        margin-bottom: 10px;    
+        margin-left: 0.4rem;
+    }
+    .post-content {
+        padding: 5px;
+        text-align: left;
+        font-size: 12px;
+    }
+    .post-title {
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+        margin-top: 1px;
+        display: block;
+    }
+    
+    .post-metadata {
+        font-size: 12px;
+        color: #007BFF;
+        margin-top: 1px;
+    }
+    
+    .post-actions {
+        text-align: right;
+        margin-top: -1.7rem;
+    }
+    
+    .like-icon {
+        color: #e74c3c;
+        font-size: 18px;
+        cursor: pointer;
+        transition: color 0.3s ease;;
+    }
+    .social-icons {
+      display: flex; 
+    }
+    
+    .social-icons a {
+      margin-right: 15px; 
+      font-size: 24px; 
+      transition: color 0.3s; 
+    }
+    
+    .social-icons a:hover {
+      color: #ffcc00; 
+    }
+    
+    .footer-section h3 {
+      font-size: 25px;
+      margin: 0 5rem;
+    }
+    
+    .footer-section{
+      margin: 0 -2rem;  
+    }
+    
+    @media (max-width: 480px) {
+      .footer-section{
+        margin: 0 0rem;  
+    
+      }
+      .logos img {
+        margin: 0 -0.90rem;
+      }
+    }
+    .like-icon:hover {
+        color: #c0392b;
+    }
+    @media (max-width: 768px) {
+      .post-grid {
+          grid-template-columns: 1fr; 
+          gap: 10px; 
+      }
+      .post-card {
+        padding: 5px;
+        width: 90%;
+        margin: 0 2rem;
+      }
+      .post-thumbnail {
+          height: 200px; 
+      }
+    
+      .post-title {
+          font-size: 1rem;
+      }
+    
+      .post-metadata {
+          font-size: 0.875rem; 
+      }
+    }
+</style>    
+<body>
+  <header class="header">
+    <nav class="navbar">
+        <div class="nav__logo">
+            <a href="{% url 'index' %}" class="logo">
+                <img src="{% static 'images/KasiAlgo.png' %}" alt="Logo" width="270" height="50">
+            </a>
+        </div>
+        <button class="hamburger" id="hamburger">
+          <i class="fa-solid fa-bars"></i> 
+      </button>
+        <ul class="nav__links"  id="nav-menu">
+          <li class="nav-item"><a href="{% url 'about' %}" class="hover-underline">Learn More</a></li>
+          <li class="nav-item"><a href="{% url 'about' %}#services" class="hover-underline">Services</a></li>
+          <li class="nav-item"><a href="{% url 'about' %}#developers" class="hover-underline">Developers</a></li>
+          <li class="nav-item"><a href="{% url 'about' %}#team" class="hover-underline">Team</a></li>
+            {% if user.is_authenticated %}
+            <li class="nav-item"><a  href="{% url 'post-create' %}" class="hover-underline">Create</a></li>
+            <li class="nav-item"><a  href="{% url 'logout' %}" class="hover-underline">Logout</a></li>                 
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+    <main class="main-content">
+        <div class="content-section">
+            <div class="profile-sec">
+                <div class="profile-details">
+                    <h2>Hello {{ profile.user.username }}</h2>
+                    <p>{{ profile.user.email }}</p>
+                </div> 
+            </div>   
+        <div class="container"> 
+                <h2>Your Applications</h2>
+                <div class="post-grid">
+                    {% for post in posts %}
+                    <div class="post-card">
+                        <div class="post-thumbnail">
+                            {% if post.image %}
+                                <a href="{% url 'post-detail' post.pk %}">
+                                    <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                                </a>
+                            {% else %}
+                                <p>No image uploaded</p>
+                            {% endif %}
+                        </div>
+                        <div class="post-content">
+                            <a href="{% url 'post-detail' post.id %}" class="post-title">{{ post.title|truncatewords:10 }}</a>
+                            <p>{{ post.content|truncatewords:14 }}</p> 
+                            <div class="post-metadata">
+                                <span class="post-author">by {{ post.author }}</span>
+                                <span class="post-date"> ~ {{ post.date_posted|date:"j F, Y" }}</span>
+                            </div>
+                            <div class="post-actions">
+                                <span class="like-icon">&#10084;</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p>No Blogs Posted Yet.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% if is_paginated %}
+            <div class="pagination">
+                {% if page_obj.has_previous %}
+                    <a class="pagination-btn" href="?page=1">First</a>
+                    <a class="pagination-btn" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+                
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a class="pagination-btn active" href="?page={{ num }}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a class="pagination-btn" href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if page_obj.has_next %}
+                    <a class="pagination-btn" href="?page={{ page_obj.next_page_number }}">Next</a>
+                    <a class="pagination-btn" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </main>
+    <footer class="footer">
+      <div class="container2">
+        <div class="footer_inner">
+          <div class="c-footer">
+            <div class="layout">
+              <div class="layout_item w-50">
+                <div class="newsletter">
+                  <h4 class="newsletter_title">Subscribe to get exciting news about deployments,<br>upcoming events and more.</h4><br><br>
+                  <form action="{% url 'enquire' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="email" name="email"placeholder="Your email address">
+                    <button>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" />
+                      </svg>
+                    </button>
+                  </form>
+                </div>
+              </div>
+              <div class="layout_item w-25">
+                <nav class="c-nav-tool">
+                  <h4 class="c-nav-tool_title">Menu</h4>
+                  <ul class="c-nav-tool_list">
+                    <li>
+                      <a href="{% url 'about' %}" class="c-link">About Us</a>
+                    </li>
+                    <li>
+                      <a href="#" class="c-link">Events</a>
+                    </li>
+                    <li>
+                      <a href="#" class="c-link">Developers</a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+              <div class="layout_item w-25">
+                <nav class="c-nav-tool">
+                  <h4 class="c-nav-tool_title">Support</h4>
+                  <ul class="c-nav-tool_list">
+                    <li class="c-nav-tool_item">
+                      <a href="{% url 'terms' %}#terms" class="c-link">Terms &amp; Conditions</a>
+                    </li>
+                    <li class="c-nav-tool_item">
+                      <a href="{% url 'terms' %}#privacy" class="c-link">Privacy Policy</a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+            <div class="layout c-2">
+              <div class="layout_item w-50">
+                <ul class="flex">
+                    <a href="{% url 'index' %}" class="logo"><img src="{% static 'images/KasiAlgo.png' %}" alt="Logo" width="250" height="50"></a>
+                  </li>
+                </ul>
+              </div>
+              <div class="footer-section">
+                <h4 class="newsletter_title">Follow Us</h4>
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/company/ascentric-intel-agency/" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://www.instagram.com/ascentric_intel.agency?igsh=MThneXkxOTZjc2trdg==" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61564908424267" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                </div>
+            </div>
+              <div class="layout_item w-25" style="display: flex; justify-content: end; align-items: center;">
+                <button id="scrollToTopButton" style="background: none; border: none; cursor: pointer;">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36">
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm1 10h3l-4-4-4 4h3v4h2v-4z" />
+                  </svg>
+                </button>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer_copyright">
+          <p>&copy; 2024 Kasi Algorithms</p>
+        </div>
+      </div>
+    </footer>
+      <script>
+        document.getElementById('scrollToTopButton').addEventListener('click', function() {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+          document.getElementById('hamburger').addEventListener('click', function() {
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle('active');
+        });
+      </script>
+</body>
+</html>
+

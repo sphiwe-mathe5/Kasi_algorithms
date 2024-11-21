@@ -1,0 +1,333 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="icon" href="{% static 'images/KasiAlgo2.png' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
+    <title>Kasi Algorithms</title>
+</head>
+<body>
+  <header class="header">
+    <nav class="navbar">
+        <div class="nav__logo">
+            <a href="{% url 'index' %}" class="logo">
+                <img src="{% static 'images/KasiAlgo.png' %}" alt="Logo" width="270" height="50">
+            </a>
+        </div>
+        <button class="hamburger" id="hamburger">
+          <i class="fa-solid fa-bars"></i> 
+      </button>
+        <ul class="nav__links" class="hover-underline"  id="nav-menu">
+          <li class="nav-item"><a href="{% url 'about' %}" class="hover-underline">Learn More</a></li>
+          <li class="nav-item"><a href="{% url 'about' %}#services" class="hover-underline">Services</a></li>
+          <li class="nav-item"><a href="{% url 'about' %}#developers" class="hover-underline">Developers</a></li>
+          <li class="nav-item"><a href="{% url 'about' %}#team" class="hover-underline">Team</a></li>
+            {% if user.is_authenticated %}
+            <li class="nav-item"><a href="{% url 'user-posts' user.username %}" class="hover-underline">Profile</a></li>                
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+{% if messages %}
+  <div id="notification" class="notification">
+      {% for message in messages %}
+          <p>{{ message }}</p>
+      {% endfor %}
+  </div>
+  <script>
+      setTimeout(function() {
+          document.getElementById('notification').style.display = 'none';
+      }, 5000);
+  </script>
+{% endif %}
+    <main class="main-content">       
+        <div class="content-section">
+            <div class="container">
+                <div class="toggle-container" id="toggleSlider">
+                    <div class="toggle-button" id="toggleBtn"></div>
+                    <button id="animalButton" onclick="showCategory('animals')">Applications</button>
+                    <button id="foodButton" onclick="showCategory('food')">Listings</button>
+                </div>
+                <div id="animals" class="category active-category">
+                    <h2>Kasi Algorithms Applications</h2>
+                    <div class="post-grid">
+                      {% for post in posts %}
+                      <div class="post-card">
+                          <div class="post-thumbnail">
+                              {% if post.image %}
+                                  <a href="javascript:void(0);" onclick="openModal('{{ post.title|escapejs }}', '{{ post.author.username|escapejs }}', '{{ post.date_posted|date:'j F, Y'|escapejs }}', '{{ post.content|escapejs }}')">
+                                      <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                                  </a>
+                              {% else %}
+                                  <p>No image uploaded</p>
+                              {% endif %}
+                          </div>
+                          <div class="post-content">
+                              <a href="" class="post-title">{{ post.title }}</a>
+                              <p>{{ post.content|truncatewords:10 }}</p> 
+                              {% if post.url %}
+                              <span class="post-author">
+                                  <a href="{{ post.url }}" target="_blank" class="hover-underline">{{ post.url }}</a>
+                              </span>
+                          {% endif %}
+                          </div>
+                      </div>
+                      {% empty %}
+                      <p>No Applications Deployed Yet.</p>
+                      {% endfor %}
+                  </div>
+                </div>
+
+                <div id="postModal" class="modal">
+                  <div class="modal-content">
+                      <span class="close" onclick="closeModal()">&times;</span>
+                      <h2 id="modal-post-title"></h2>
+                      <p id="modal-post-author"></p>
+                      <p id="modal-post-date"></p>
+                      <p id="modal-post-url"></p>
+                      <div id="modal-post-content"></div>
+                  </div>
+                </div>               
+                <div id="food" class="category">
+                    <h2>Community Listings</h2>
+                    <p>This Feature is not available yet</p>
+                </div>
+            </div>
+          </div>
+            <div class="responsive-container-block bigContainer">
+                <div class="responsive-container-block Container">
+                  <div class="imgContainer">
+                    <img class="blueDots" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/aw3.svg">
+                    <img class="mainImg" src="static\images\aboutus.png">
+                  </div>
+                  <div class="responsive-container-block textSide">
+                    <p class="text-blk heading">
+                      About Us
+                    </p>
+                    <p class="text-blk subHeading">
+                      Kasi Algorithms Solutions is a software development company focused on creating innovative and practical solutions
+                      for townships. The company’s goal is to address critical challenges faced by township communities by building
+                      custom software and mobile applications that enhance learning, development, and community problem-solving.
+                      Our goals are : 
+                    </p>
+                    <div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12">
+                      <div class="cardImgContainer">
+                        <img class="cardImg" src="static\images\deployment_17219705.png">
+                      </div>
+                      <div class="cardText">
+                        <p class="text-blk cardHeading">
+                          Build & Deploying
+                        </p>
+                        <p class="text-blk cardSubHeading">
+                          Software solutions tailored to the unique needs of townships.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12">
+                      <div class="cardImgContainer">
+                        <img class="cardImg"  src="static\images\advanced_17400539.png">
+                      </div>
+                      <div class="cardText">
+                        <p class="text-blk cardHeading">
+                          Learning & Development
+                        </p>
+                        <p class="text-blk cardSubHeading">
+                          Encourage skills development through coding training.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12">
+                      <div class="cardImgContainer">
+                        <img class="cardImg"  src="static\images\problem-solving_17656795.png">
+                      </div>
+                      <div class="cardText">
+                        <p class="text-blk cardHeading">
+                          Problems Solving
+                        </p>
+                        <p class="text-blk cardSubHeading">
+                          Solve key issues in townships, such as educations.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12">
+                      <div class="cardImgContainer">
+                        <img class="cardImg"  src="static\images\united_1534938.png">
+                      </div>
+                      <div class="cardText">
+                        <p class="text-blk cardHeading">
+                          Collaboration
+                        </p>
+                        <p class="text-blk cardSubHeading">
+                          Establish Collaboration for problem solving.
+                        </p>
+                      </div>
+                    </div>
+                    <a href="{% url 'about' %}">
+                      <button class="explore">
+                        More About Kasi Algorithms
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            {% if is_paginated %}
+            <div class="pagination">
+                {% if page_obj.has_previous %}
+                    <a class="pagination-btn" href="?page=1">First</a>
+                    <a class="pagination-btn" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+                
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a class="pagination-btn active" href="?page={{ num }}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a class="pagination-btn" href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if page_obj.has_next %}
+                    <a class="pagination-btn" href="?page={{ page_obj.next_page_number }}">Next</a>
+                    <a class="pagination-btn" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                {% endif %}
+            </div>
+        {% endif %}
+        </div>                
+    </main>
+
+  <footer class="footer">
+    <div class="container2">
+      <div class="footer_inner">
+        <div class="c-footer">
+          <div class="layout">
+            <div class="layout_item w-50">
+              <div class="newsletter">
+                <h4 class="newsletter_title">Subscribe to get exciting news about deployments,<br>upcoming events and more.</h4><br><br>
+                <form action="{% url 'enquire' %}" method="POST">
+                  {% csrf_token %}
+                  <input type="email" name="email"placeholder="Your email address">
+                  <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                      <path fill="none" d="M0 0h24v24H0z" />
+                      <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" />
+                    </svg>
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div class="layout_item w-25">
+              <nav class="c-nav-tool">
+                <h4 class="c-nav-tool_title">Menu</h4>
+                <ul class="c-nav-tool_list">
+                  <li>
+                    <a href="{% url 'about' %}" class="c-link">About Us</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'prompt' %}" class="c-link">Contact Us</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="layout_item w-25">
+              <nav class="c-nav-tool">
+                <h4 class="c-nav-tool_title">Support</h4>
+                <ul class="c-nav-tool_list">
+                  <li class="c-nav-tool_item">
+                    <a href="{% url 'terms' %}#terms" class="c-link">Terms &amp; Conditions</a>
+                  </li>
+                  <li class="c-nav-tool_item">
+                    <a href="{% url 'terms' %}#privacy" class="c-link">Privacy Policy</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <div class="layout c-2">
+            <div class="layout_item w-50">
+              <ul class="flex">
+                  <a href="{% url 'index' %}" class="logos"><img src="{% static 'images/KasiAlgo.png' %}" alt="Logo" width="250" height="50"></a>
+                </li>
+              </ul>
+            </div>
+            <div class="footer-section">
+              <h4 class="newsletter_title">Follow Us</h4>
+              <div class="social-icons">
+                  <a href="https://www.linkedin.com/company/ascentric-intel-agency/" target="_blank" aria-label="LinkedIn">
+                      <i class="fab fa-linkedin"></i>
+                  </a>
+                  <a href="https://www.instagram.com/ascentric_intel.agency?igsh=MThneXkxOTZjc2trdg==" target="_blank" aria-label="Instagram">
+                      <i class="fab fa-instagram"></i>
+                  </a>
+                  <a href="https://www.facebook.com/profile.php?id=61564908424267" target="_blank" aria-label="Facebook">
+                      <i class="fab fa-facebook"></i>
+                  </a>
+              </div>
+          </div>
+            <div class="layout_item w-25" style="display: flex; justify-content: end; align-items: center;">
+              <button id="scrollToTopButton" style="background: none; border: none; cursor: pointer;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36">
+                  <path fill="none" d="M0 0h24v24H0z" />
+                  <path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm1 10h3l-4-4-4 4h3v4h2v-4z" />
+                </svg>
+              </button>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer_copyright">
+        <p>&copy; 2024 Kasi Algorithms</p>
+      </div>
+    </div>
+  </footer>
+  <script>
+    let toggleButton = document.getElementById('toggleBtn');
+    let toggleContainer = document.getElementById('toggleSlider');
+
+    function showCategory(category) {
+        document.getElementById('animals').classList.remove('active-category');
+        document.getElementById('food').classList.remove('active-category');
+
+        document.getElementById(category).classList.add('active-category');
+        if (category === 'food') {
+            toggleButton.style.transform = 'translateX(100%)';
+            toggleContainer.classList.add('active');
+        } else {
+            toggleButton.style.transform = 'translateX(0)';
+              toggleContainer.classList.remove('active');
+          }
+      }
+      document.getElementById('scrollToTopButton').addEventListener('click', function() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+        document.getElementById('hamburger').addEventListener('click', function() {
+          const navMenu = document.getElementById('nav-menu');
+          navMenu.classList.toggle('active');
+      });
+
+    function openModal(title, author, date, content) {
+      document.getElementById('modal-post-title').innerText = title;
+      document.getElementById('modal-post-author').innerText = 'By: ' + author;
+      document.getElementById('modal-post-date').innerText = date;
+      document.getElementById('modal-post-content').innerHTML = content;
+      document.getElementById('postModal').style.display = 'block';
+    }
+    
+    function closeModal() {
+        document.getElementById('postModal').style.display = 'none';
+    }
+    
+    window.onclick = function(event) {
+        const modal = document.getElementById('postModal');
+        if (event.target === modal) {
+            closeModal();
+        }
+    };
+</script>
+</body>
+</html>

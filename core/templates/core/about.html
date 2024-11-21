@@ -1,0 +1,292 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="icon" href="{% static 'images/KasiAlgo2.png' %}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
+  <title>Kasi Algorithms</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="navbar">
+          <div class="nav__logo">
+              <a href="{% url 'index' %}" class="logo">
+                  <img src="{% static 'images/KasiAlgo.png' %}" alt="Logo" width="270" height="50">
+              </a>
+          </div>
+          <button class="hamburger" id="hamburger">
+            <i class="fa-solid fa-bars"></i> 
+        </button>
+          <ul class="nav__links"  id="nav-menu">
+            <li class="nav-item"><a href="{% url 'about' %}" class="hover-underline">Learn More</a></li>
+            <li class="nav-item"><a href="{% url 'about' %}#services" class="hover-underline">Services</a></li>
+            <li class="nav-item"><a href="{% url 'about' %}#developers" class="hover-underline">Developers</a></li>
+            <li class="nav-item"><a href="{% url 'about' %}#team" class="hover-underline">Team</a></li>
+              {% if user.is_authenticated %}
+              <li class="nav-item"><a class="nav-link" href="{% url 'user-posts' user.username %}" class="hover-underline">Profile</a></li>                
+              {% endif %}
+          </ul>
+      </nav>
+  </header>
+
+    <section class="company-profile">
+        <div class="profile-item">
+            <h2>Vision</h2>
+            <p>To empower township communities by providing accessible software solutions that solve problems</p>
+        </div>
+        <div class="profile-item">
+            <h2>Our Mission</h2>
+            <p>To become the leading platform for township technological innovation and tailored at problem solving</p>
+        </div>
+        <div class="profile-item">
+          <h2>About Us</h2>
+          <p>Kasi Algorithms aims to empower township communities through innovative technology.</p>
+        </div>
+        <div class="profile-item">
+          <h2>Our Services</h2>
+          <p>We provide software development and tech solutions tailored to solving community problems.</p>
+        </div>
+    </section>
+  
+    <div id="content">
+      <section class="about-section padding-top-100 padding-bottom-150" id="about">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-7 margin-top-60">
+                      <div class="section-heading margin-bottom-20">
+                          <h4 class="main-title">Executive Summary</h4>
+                      </div>
+                      <p class="description">
+                        Kasi Algorithms Solutions was founded with the belief that technology can be a powerful tool for solving township problems.
+                        Townships face many challenges, including access to education, healthcare, efficient public services, business management and economic 
+                        empowerment. However, there is growing access to smartphones and the internet, presenting a unique opportunity for 
+                        technology to bridge this gap. Kasi Algorithms Solutions aims at or rather try to provide solutions for such problems.
+                      </p>
+                  </div>
+              </div>
+              <div class="section-heading margin-bottom-20">
+                <h4 class="main-title">Our Offerings/Wish List Include</h4>
+            </div>
+              <section class="services-grid" id="services">
+                  <div class="service-item">
+                      <div class="icon-wrapper">
+                          <i class="flaticon-smartphone"></i>
+                      </div>
+                      <div class="info-wrapper">
+                          <h4 class="service-title">Custom Software Development</h4>
+                          <p class="service-description">Build tailor-made software and mobile applications for township-based businesses, schools, NGOs, and local governments.</p>
+                      </div>
+                  </div>
+                  <div class="service-item">
+                      <div class="icon-wrapper">
+                          <i class="flaticon-flat-world-map"></i>
+                      </div>
+                      <div class="info-wrapper">
+                          <h4 class="service-title">Developer Platform</h4>
+                          <p class="service-description">Township developers can list their apps and software on the Kasi Algorithms platform, providing exposure and collaboration opportunities.</p>
+                      </div>
+                  </div>
+             
+                  <div class="service-item">
+                      <div class="icon-wrapper">
+                          <i class="flaticon-secure-shield"></i>
+                      </div>
+                      <div class="info-wrapper">
+                          <h4 class="service-title">Workshops and Hackathons</h4>
+                          <p class="service-description">In our wishlist we hope to one day, Host coding workshops and hackathons to improve the community’s technical skills.</p>
+                      </div>
+                  </div>
+                  <div class="service-item">
+                      <div class="icon-wrapper">
+                          <i class="flaticon-credit-card"></i>
+                      </div>
+                      <div class="info-wrapper">
+                          <h4 class="service-title">Problem-Solving Consultations</h4>
+                          <p class="service-description">Provide consultations for township problems that can be solved through technology (e.g., logistics, small business automation, educational resources).</p>
+                      </div>
+                  </div>
+                  <div class="service-item">
+                      <div class="icon-wrapper">
+                          <i class="flaticon-money-3"></i>
+                      </div>
+                      <div class="info-wrapper">
+                          <h4 class="service-title">Learning and Development</h4>
+                          <p class="service-description">We hope to offer coding and development tutorials on our platform, enabling locals to learn new skills and become active contributors to our software ecosystem.</p>
+                      </div>
+                  </div>
+                  <div class="service-item">
+                      <div class="icon-wrapper">
+                          <i class="flaticon-money"></i>
+                      </div>
+                      <div class="info-wrapper">
+                          <h4 class="service-title">Web Development.</h4>
+                          <p class="service-description">We aim to help business build their online presence through our web design. From Initiasation to Deployment</p>
+                      </div>
+                  </div>
+                </section>
+          </div>
+      </section>
+  </div>
+  
+  <section class="home" id="developers">
+    <div class="content">
+        <div class="text-content">
+            <h4>Collaboration and Developers</h4>
+            <p>We also provide a platform where local developers can list their software or 
+              applications, enabling collaboration and visibility. Our long-term goal 
+              is to foster a culture of innovation within township areas and to empower
+              locals through technology, developers can register on our platform and list their applications
+              for enhanced visibility. Developers Can <a class="login-link" href="{% url 'login' %}">Sign In</a><br><br>
+              
+              We also want to Encourage every innovative ideas around the community even for non technical
+              people but may have problem solving skills, in Kasi Algorithms we are committed to help you bring
+              your ideas in into life. if you belive you have an idea contact us "Have an Idea"
+             </span></p>
+        </div>
+        <div class="image-container">
+          <img src="{% static 'images/devs.jpg' %}" alt="Logo">
+      </div>
+        <div class="button-group">
+            <a href="{% url 'login' %}" class="button primary">Developers</a>
+            <a href="{% url 'prompt' %}" class="button secondary">Have an Idea?</a>
+        </div>
+    </div>
+  </section>
+
+      <section id="team " class="team">
+        <div class="row2">
+          <h1>Meet Our Team</h1>
+        </div>
+        <div class="row2">
+          <div class="column">
+            <div class="card">
+              <div class="img-container">
+                <img src="{% static 'images/boitumelo.jpeg' %}" />
+              </div>
+              <h3>Boitumelo Matabane</h3>
+              <p>Developer</p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="card">
+              <div class="img-container">
+                <img src="{% static 'images/nazire.jpeg' %}" />
+              </div>
+              <h3>Nazire Mathe</h3>
+              <p>Developer</p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="card">
+              <div class="img-container">
+                <img src="{% static 'images/mgibaba.jpeg' %}" />
+              </div>
+              <h3>Gift Legodi</h3>
+              <p>Developer</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <footer class="footer">
+        <div class="container2">
+          <div class="footer_inner">
+            <div class="c-footer">
+              <div class="layout">
+                <div class="layout_item w-50">
+                  <div class="newsletter">
+                    <h4 class="newsletter_title">Subscribe to get exciting news about deployments,<br>upcoming events and more.</h4><br><br>
+                    <form action="{% url 'enquire' %}" method="POST">
+                      {% csrf_token %}
+                      <input type="email" name="email"placeholder="Your email address">
+                      <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                          <path fill="none" d="M0 0h24v24H0z" />
+                          <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" />
+                        </svg>
+                      </button>
+                    </form>
+                  </div>
+                </div>
+                <div class="layout_item w-25">
+                  <nav class="c-nav-tool">
+                    <h4 class="c-nav-tool_title">Menu</h4>
+                    <ul class="c-nav-tool_list">
+                      <li>
+                        <a href="{% url 'about' %}" class="c-link">About Us</a>
+                      </li>
+                      <li>
+                        <a href="{% url 'prompt' %}" class="c-link">Contact Us</a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+                <div class="layout_item w-25">
+                  <nav class="c-nav-tool">
+                    <h4 class="c-nav-tool_title">Support</h4>
+                    <ul class="c-nav-tool_list">
+                      <li class="c-nav-tool_item">
+                        <a href="{% url 'terms' %}#terms" class="c-link">Terms &amp; Conditions</a>
+                      </li>
+                      <li class="c-nav-tool_item">
+                        <a href="{% url 'terms' %}#privacy" class="c-link">Privacy Policy</a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+              <div class="layout c-2">
+                <div class="layout_item w-50">
+                  <ul class="flex">
+                      <a href="{% url 'index' %}" class="logos"><img src="{% static 'images/KasiAlgo.png' %}" alt="Logo" width="250" height="50"></a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="footer-section">
+                  <h4 class="newsletter_title">Follow Us</h4>
+                  <div class="social-icons">
+                      <a href="https://www.linkedin.com/company/ascentric-intel-agency/" target="_blank" aria-label="LinkedIn">
+                          <i class="fab fa-linkedin"></i>
+                      </a>
+                      <a href="https://www.instagram.com/ascentric_intel.agency?igsh=MThneXkxOTZjc2trdg==" target="_blank" aria-label="Instagram">
+                          <i class="fab fa-instagram"></i>
+                      </a>
+                      <a href="https://www.facebook.com/profile.php?id=61564908424267" target="_blank" aria-label="Facebook">
+                          <i class="fab fa-facebook"></i>
+                      </a>
+                  </div>
+              </div>
+                <div class="layout_item w-25" style="display: flex; justify-content: end; align-items: center;">
+                  <button id="scrollToTopButton" style="background: none; border: none; cursor: pointer;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36">
+                      <path fill="none" d="M0 0h24v24H0z" />
+                      <path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm1 10h3l-4-4-4 4h3v4h2v-4z" />
+                    </svg>
+                  </button>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer_copyright">
+            <p>&copy; 2024 Kasi Algorithms</p>
+          </div>
+        </div>
+      </footer>
+      <script>
+        document.getElementById('scrollToTopButton').addEventListener('click', function() {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+        document.getElementById('hamburger').addEventListener('click', function() {
+          const navMenu = document.getElementById('nav-menu');
+          navMenu.classList.toggle('active');
+      });
+      </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+{% load static %}
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="icon" href="{% static 'images/KasiAlgo2.png' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
+    <title>Kasi Algorithms</title>
+    </head>
+<body>
+  <header class="header">
+    <nav class="navbar">
+        <div class="nav__logo">
+            <a href="{% url 'index' %}" class="logo">
+                <img src="{% static 'images/KasiAlgo.png' %}" alt="Logo" width="270" height="50">
+            </a>
+        </div>
+        <button class="hamburger" id="hamburger">
+          <i class="fa-solid fa-bars"></i> 
+      </button>
+      <ul class="nav__links" class="hover-underline"  id="nav-menu">
+        <li class="nav-item"><a href="{% url 'about' %}" class="hover-underline">Learn More</a></li>
+        <li class="nav-item"><a href="{% url 'about' %}#services" class="hover-underline">Services</a></li>
+        <li class="nav-item"><a href="{% url 'about' %}#developers" class="hover-underline">Developers</a></li>
+        <li class="nav-item"><a href="{% url 'about' %}#team" class="hover-underline">Team</a></li>
+          {% if user.is_authenticated %}
+          <li class="nav-item"><a href="{% url 'user-posts' user.username %}" class="hover-underline">Profile</a></li>                
+          {% endif %}
+      </ul>
+    </nav>
+</header>
+    {% if messages %}
+    <div id="notification" class="notification">
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    <script>
+        setTimeout(function() {
+            document.getElementById('notification').style.display = 'none';
+        }, 5000);
+    </script>
+    {% endif %}
+  <div class="home">
+      <div class="text-content">
+          <h4>Collaboration and Developers</h4>
+          <p>
+            We also want to encourage every innovative idea around the
+            community, even for non-technical people who may have 
+            problem-solving skills. At Kasi Algorithms, we are committed to
+            helping you bring your ideas to life. You might be having
+            a brilliant idea, but may not have the technical skills to
+            develop it, thats where we come into help. if you believe you
+            have an idea and you would like us to make it a reality you
+            can fill out the contact form. Terms and Conditions apply<br><br>
+
+            As Part of our Services, we are committed to help businesses, therefore
+            we also offer web/app services whereby we help businesses to build their
+            websites and apps. if your business needs an app or a website contact
+            on the form and tell us what is it you would like us to build for you
+            and we will take it from there
+          </p>
+      </div>
+
+      <div class="container">
+        <form action="{% url 'optout' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="text" name="first_name" required>
+                    <div class="underline"></div>
+                    <label>First Name</label>
+                </div>
+                <div class="input-data">
+                    <input type="text" name="last_name" required>
+                    <div class="underline"></div>
+                    <label>Last Name</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="email" name="email" required>
+                    <div class="underline"></div>
+                    <label>Email Address</label>
+                </div>
+                <div class="input-data">
+                    <input type="text" name="phone_number" required>
+                    <div class="underline"></div>
+                    <label>Phone Number</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-data textarea">
+                    <textarea name="message" rows="8" cols="80" required></textarea>
+                    <div class="underline"></div>
+                    <label>Write your message</label>
+                </div>
+            </div>
+            <div class="form-row submit-btn">
+                <div class="input-data">
+                    <div class="inner"></div>
+                    <input type="submit" value="Submit">
+                </div>
+            </div>
+        </form>        
+          <div class="footer-text">
+            <small>
+                Read Terms About <a class="login-link" href="{% url 'terms' %}">Telling us Your Idea</a>
+            </small>
+        </div>
+      </div>
+  </div>
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function() {
+      const navMenu = document.getElementById('nav-menu');
+      navMenu.classList.toggle('active');
+  });
+  </script>
+</body>
+</html>
