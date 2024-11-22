@@ -45,7 +45,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'core.project.urls'
 
 
-#WSGI_APPLICATION = 'core.project.wsgi.application'
+
 ASGI_APPLICATION = 'core.project.asgi.application'
 
 
@@ -55,7 +55,7 @@ CHANNEL_LAYERS = {
     },
 }
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'  # or 'bootstrap3' depending on your Bootstrap version
+CRISPY_TEMPLATE_PACK = 'bootstrap4' 
 
 
 TEMPLATES = [
