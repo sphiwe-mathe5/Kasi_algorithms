@@ -3,11 +3,11 @@ from pathlib import Path
 from decouple import config, Csv
 from google.oauth2 import service_account
 
-from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
+PROJECT_DIR = Path(__file__).resolve().parent
 
 SECRET_KEY = config('SECRET_KEY')
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='.vercel.app,127.0.0.1,.com').split(',')
 ADMIN_PATH = config('ADMIN_PATH')
 
@@ -24,7 +24,6 @@ INSTALLED_APPS = [
     'core',
     'submit',
     'emails',
-    #'channels',
     'crispy_forms',
     'axes',
     #'crispy_bootstrap4',
@@ -78,23 +77,18 @@ TEMPLATES = [
 
 
 
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': config('DATABASE_ENGINE'),
+        'NAME': config('DATABASE_NAME'),
+        'USER': config('DATABASE_USER'),
+        'PASSWORD': config('DATABASE_PASSWORD'),
+        'HOST': config('DATABASE_HOST'),
+        'PORT': config('DATABASE_PORT'),
     }
 }
-
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': config('DATABASE_NAME'),
-#        'USER': config('DATABASE_USER'),
-#        'PASSWORD': config('DATABASE_PASSWORD'),
-#        'HOST': config('DATABASE_HOST'),
-#        'PORT': config('DATABASE_PORT'),
-#    }
-#}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -141,26 +135,26 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-#DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-#GS_PROJECT_ID = config('GS_PROJECT_ID')
-#GS_BUCKET_NAME = config('GS_BUCKET_NAME')
-#MEDIA_ROOT = "media/"
-#UPLOAD_ROOT = 'media/uploads'
-#MEDIA_URL = config('MEDIA_URL')
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_PROJECT_ID = config('GS_PROJECT_ID')
+GS_BUCKET_NAME = config('GS_BUCKET_NAME')
+MEDIA_ROOT = "media/"
+UPLOAD_ROOT = 'media/uploads'
+MEDIA_URL = config('MEDIA_URL')
 
-#GS_CREDENTIALS = service_account.Credentials.from_service_account_info({
-#    "type": config("GOOGLE_CLOUD_TYPE", default="service_account"),
-#    "project_id": config("GOOGLE_CLOUD_PROJECT_ID"),
-#    "private_key_id": config("GOOGLE_CLOUD_PRIVATE_KEY_ID"),
-#    "private_key": config("GOOGLE_CLOUD_PRIVATE_KEY").replace("\\n", "\n"),
-#    "client_email": config("GOOGLE_CLOUD_CLIENT_EMAIL"),
-#    "client_id": config("GOOGLE_CLOUD_CLIENT_ID"),
-#    "auth_uri": config("GOOGLE_CLOUD_AUTH_URI", default="https://accounts.google.com/o/oauth2/auth"),
-#    "token_uri": config("GOOGLE_CLOUD_TOKEN_URI", default="https://oauth2.googleapis.com/token"),
-#    "auth_provider_x509_cert_url": config("GOOGLE_CLOUD_AUTH_PROVIDER_X509_CERT_URL", default="https://www.googleapis.com/oauth2/v1/certs"),
-#    "client_x509_cert_url": config("GOOGLE_CLOUD_CLIENT_X509_CERT_URL"),
-#    "universe_domain": config("GOOGLE_CLOUD_UNIVERSE_DOMAIN", default="googleapis.com")
-#})
+GS_CREDENTIALS = service_account.Credentials.from_service_account_info({
+    "type": config("GOOGLE_CLOUD_TYPE", default="service_account"),
+    "project_id": config("GOOGLE_CLOUD_PROJECT_ID"),
+    "private_key_id": config("GOOGLE_CLOUD_PRIVATE_KEY_ID"),
+    "private_key": config("GOOGLE_CLOUD_PRIVATE_KEY").replace("\\n", "\n"),
+    "client_email": config("GOOGLE_CLOUD_CLIENT_EMAIL"),
+    "client_id": config("GOOGLE_CLOUD_CLIENT_ID"),
+    "auth_uri": config("GOOGLE_CLOUD_AUTH_URI", default="https://accounts.google.com/o/oauth2/auth"),
+    "token_uri": config("GOOGLE_CLOUD_TOKEN_URI", default="https://oauth2.googleapis.com/token"),
+    "auth_provider_x509_cert_url": config("GOOGLE_CLOUD_AUTH_PROVIDER_X509_CERT_URL", default="https://www.googleapis.com/oauth2/v1/certs"),
+    "client_x509_cert_url": config("GOOGLE_CLOUD_CLIENT_X509_CERT_URL"),
+    "universe_domain": config("GOOGLE_CLOUD_UNIVERSE_DOMAIN", default="googleapis.com")
+})
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

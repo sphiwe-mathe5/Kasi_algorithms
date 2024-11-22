@@ -8,7 +8,7 @@ from django.core.files.base import ContentFile
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    image = models.ImageField(default='avatar.jpg', upload_to='kasi_pics')
 
 
     def __str__(self):

@@ -22,7 +22,7 @@ def send_email(request):
             recipient = form.cleaned_data['recipient']
             template = form.cleaned_data['template']
             
-            # Render the HTML template from file
+
             html_message = render_to_string(f'emails/{template.filename}', {})
             
             send_mail(

@@ -8,7 +8,9 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.conf.urls.static import static
 from core.models import Post
+from emails.models import EmailTemplate, SentEmail
 from submit.models import Profile
+from axes.models import AccessAttempt, AccessLog
 from core.views import index, subscribe, about, enquire,contact, terms, prompt,  optout, PostListView, PostDetailView, PostCreateView,PostUpdateView,PostDeleteView, UserPostListView
 
 class OTPAdmin(OTPAdminSite):
@@ -19,12 +21,16 @@ admin_site.register(User)
 admin_site.register(TOTPDevice, TOTPDeviceAdmin)
 admin_site.register(Post)
 admin_site.register(Profile)
+admin_site.register(AccessAttempt)
+admin_site.register(AccessLog)
+admin_site.register(EmailTemplate)
+admin_site.register(SentEmail)
+
 
 
 urlpatterns = [
     path('', PostListView.as_view(), name='index'),
-    path('admin/', admin.site.urls),
-    #path('kasialgo-secure-admin/', admin_site.urls),
+    path('kasialgo-secure-admin/', admin_site.urls),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
     path('post/new/', PostCreateView.as_view(), name='post-create'),
     path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),

@@ -26,6 +26,7 @@ google-cloud-storage = "^2.18.2"
 django-axes = "^7.0.0"
 boto = "^2.49.0"
 psycopg2-binary = "^2.9.10"
+django-storages = "^1.14.4"
 
 
 [build-system]
