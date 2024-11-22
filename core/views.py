@@ -211,7 +211,7 @@ def optout(request):
         phone_number = request.POST.get('phone_number')
         message = request.POST.get('message')
 
-        # Construct the email content
+        
         email_subject = 'New Inquiry from {}'.format(first_name + ' ' + last_name)
         email_message = f'''
         You have received a new message from {first_name} {last_name}.
