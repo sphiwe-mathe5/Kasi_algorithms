@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_DIR = Path(__file__).resolve().parent
 
 SECRET_KEY = config('SECRET_KEY')
-DEBUG = False
+DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='.vercel.app,127.0.0.1,.com').split(',')
 ADMIN_PATH = config('ADMIN_PATH')
 
@@ -194,6 +194,33 @@ AXES_RESET_ON_SUCCESS = config('AXES_RESET_ON_SUCCESS', cast=bool)
 
 AXES_LOCKOUT_PARAMETERS = config('AXES_LOCKOUT_PARAMETERS', cast=Csv())
 
+
+X_FRAME_OPTIONS = 'DENY'
+CSRF_COOKIE_SAMESITE = 'Strict'
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+
+if not DEBUG:
+    CSRF_COOKIE_SECURE = True
+    CSRF_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_HSTS_SECONDS = 15768000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SECURE_SSL_REDIRECT = True
+    SECURE_REFERRER_POLICY = 'same-origin'
+    SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin'
+    SESSION_COOKIE_NAME = '__Host-sessionid'
+    CSRF_COOKIE_NAME = '__Host-csrftoken'
+else:
+    
+    CSRF_COOKIE_SECURE = False
+    CSRF_COOKIE_HTTPONLY = False
+    SESSION_COOKIE_SECURE = False
+    SECURE_SSL_REDIRECT = False
+    SECURE_HSTS_SECONDS = 0
 
 LOGIN_REDIRECT_URL = 'index'
 LOGIN_URL = 'login'
