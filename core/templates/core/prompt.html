@@ -66,46 +66,7 @@
       </div>
 
       <div class="container">
-        <form action="{% url 'optout' %}" method="POST">
-            {% csrf_token %}
-            <div class="form-row">
-                <div class="input-data">
-                    <input type="text" name="first_name" required>
-                    <div class="underline"></div>
-                    <label>First Name</label>
-                </div>
-                <div class="input-data">
-                    <input type="text" name="last_name" required>
-                    <div class="underline"></div>
-                    <label>Last Name</label>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="input-data">
-                    <input type="email" name="email" required>
-                    <div class="underline"></div>
-                    <label>Email Address</label>
-                </div>
-                <div class="input-data">
-                    <input type="text" name="phone_number" required>
-                    <div class="underline"></div>
-                    <label>Phone Number</label>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="input-data textarea">
-                    <textarea name="message" rows="8" cols="80" required></textarea>
-                    <div class="underline"></div>
-                    <label>Write your message</label>
-                </div>
-            </div>
-            <div class="form-row submit-btn">
-                <div class="input-data">
-                    <div class="inner"></div>
-                    <input type="submit" value="Submit">
-                </div>
-            </div>
-        </form>        
+       
           <div class="footer-text">
             <small>
                 Read Terms About <a class="login-link" href="{% url 'terms' %}">Telling us Your Idea</a>
