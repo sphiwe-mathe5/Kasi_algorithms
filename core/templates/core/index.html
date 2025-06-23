@@ -9,6 +9,283 @@
     <link rel="icon" href="{% static 'images/KasiAlgo2.png' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
     <title>Kasi Algorithms</title>
+    <style>
+        .containers {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .headers {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: black;
+        }
+
+        .company-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .included-features {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .included-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .included-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .included-list li {
+            color: black;
+            font-size: 0.8rem;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .plan-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+        }
+
+        .plan-card.professional::before {
+            background: linear-gradient(90deg, #2196F3, #1976D2);
+        }
+
+        .plan-card.premium::before {
+            background: linear-gradient(90deg, #f44336, #d32f2f);
+        }
+
+        .plan-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #2196F3;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-subtitle {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .plan-ideal {
+            background: #f8f9fa;
+            padding: 0.75rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .features-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .features-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .features-list li {
+            padding: 0.3rem 0;
+            font-size: 0.9rem;
+            color: #555;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .features-list li::before {
+            content: '✅';
+            flex-shrink: 0;
+        }
+
+        .maintenance-section {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .maintenance-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .example-section {
+            background: #e3f2fd;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #2196F3;
+        }
+
+        .example-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1976D2;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .example-text {
+            font-size: 0.9rem;
+            color: #555;
+            font-style: italic;
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, #1976D2, #1565C0);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .company-name {
+                font-size: 2rem;
+            }
+            
+            .plans-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .included-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .newsletter {
+          display: flex;
+          gap: 10px;
+          max-width: 400px;
+          margin-top: 3rem;
+        }
+
+        .newsletter-input {
+          flex: 1;
+          padding: 12px 16px;
+          border: 1px solid #ddd;
+          border-radius: 6px;
+          font-size: 14px;
+          outline: none;
+        }
+
+        .newsletter-input:focus {
+          border-color: #2196F3;
+        }
+
+        .newsletter-btn {
+          padding: 12px 24px;
+          background: #2196F3;
+          color: white;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+          font-size: 14px;
+        }
+
+        .newsletter-btn:hover {
+          background: #1976D2;
+        }
+    </style>
 </head>
 <body>
   <header class="header">
@@ -198,13 +475,176 @@
         </div>                
     </main>
 
+        <div class="containers">
+        <div class="headers">
+            <h1 class="company-name">Kasi Algorithms</h1>
+            <h2 class="section-title">Web Development Pricing Plans</h2>
+        </div>
+
+        <div class="included-features">
+            <h3 class="included-title">All plans include:</h3>
+            <ul class="included-list">
+                <li>✅ Mobile-responsive design</li>
+                <li>✅ SEO-friendly structure</li>
+                <li>✅ Fast loading times</li>
+                <li>✅ Unlimited image uploads</li>
+                <li>✅ Secure HTTPS (SSL)</li>
+                <li>✅ Free consultation & project brief session</li>
+            </ul>
+        </div>
+
+        <div class="plans-grid">
+            <!-- Starter Plan -->
+            <div class="plan-card starter">
+                <div class="plan-header">
+                    <div class="plan-icon">🟢</div>
+                    <h3 class="plan-name">Starter Plan</h3>
+                    <div class="plan-price">R5,000</div>
+                    <div class="plan-subtitle">(One-Time)</div>
+                    <div class="plan-ideal">
+                        <strong>Ideal for:</strong> Freelancers, personal portfolios, local small businesses
+                    </div>
+                </div>
+
+                <div class="features-section">
+                    <h4 class="features-title">✅ What You Get:</h4>
+                    <ul class="features-list">
+                        <li>Custom homepage + up to 3 key sections (e.g. About, Services, Contact)</li>
+                        <li>Basic contact form</li>
+                        <li>Social media integration</li>
+                        <li>One email setup (e.g., info@yourdomain.com)</li>
+                        <li>Basic SEO setup</li>
+                        <li>Static content site (HTML/CSS/JS)</li>
+                    </ul>
+                </div>
+
+                <div class="maintenance-section">
+                    <h4 class="maintenance-title">🔄 Monthly Maintenance (R500/month, optional):</h4>
+                    <ul class="features-list">
+                        <li>Domain + hosting support</li>
+                        <li>Weekly backups</li>
+                        <li>Uptime monitoring</li>
+                        <li>Minor text/image updates</li>
+                        <li>Basic analytics tracking</li>
+                    </ul>
+                </div>
+
+                <div class="example-section">
+                    <h4 class="example-title">🧩 Example:</h4>
+                    <p class="example-text">A personal trainer showcasing their services, testimonials, and a contact form.</p>
+                </div>
+
+                <button class="cta-button">Get Started</button>
+            </div>
+
+            <!-- Professional Plan -->
+            <div class="plan-card professional">
+                <div class="plan-header">
+                    <div class="plan-icon">🔵</div>
+                    <h3 class="plan-name">Professional Plan</h3>
+                    <div class="plan-price">R10,000</div>
+                    <div class="plan-subtitle">(One-Time)</div>
+                    <div class="plan-ideal">
+                        <strong>Ideal for:</strong> SMEs, bloggers, local e-commerce, agencies
+                    </div>
+                </div>
+
+                <div class="features-section">
+                    <h4 class="features-title">✅ What You Get:</h4>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Everything in Starter Plan, plus:</p>
+                    <ul class="features-list">
+                        <li>Dynamic CMS (e.g., WordPress, Webflow, or custom)</li>
+                        <li>Blog or portfolio module</li>
+                        <li>Advanced contact forms (e.g., file uploads, custom fields)</li>
+                        <li>Performance optimization</li>
+                        <li>Cloud storage setup (up to 5GB for files/media)</li>
+                    </ul>
+                </div>
+
+                <div class="maintenance-section">
+                    <h4 class="maintenance-title">🔄 Monthly Maintenance (R1,000/month, optional):</h4>
+                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 0.5rem;">All Starter Maintenance, plus:</p>
+                    <ul class="features-list">
+                        <li>CMS/plugin updates</li>
+                        <li>Cloud storage support</li>
+                        <li>Form/lead integration maintenance</li>
+                        <li>Basic database support (e.g., blog entries, users)</li>
+                    </ul>
+                </div>
+
+                <div class="example-section">
+                    <h4 class="example-title">🧩 Example:</h4>
+                    <p class="example-text">A bakery showcasing weekly menus, blog recipes, and an order inquiry form.</p>
+                </div>
+
+                <button class="cta-button">Get Started</button>
+            </div>
+
+            <!-- Premium Plan -->
+            <div class="plan-card premium">
+                <div class="plan-header">
+                    <div class="plan-icon">🔴</div>
+                    <h3 class="plan-name">Premium Plan</h3>
+                    <div class="plan-price">R20,000</div>
+                    <div class="plan-subtitle">(One-Time)</div>
+                    <div class="plan-ideal">
+                        <strong>Ideal for:</strong> Established brands, medium-sized businesses, advanced content needs
+                    </div>
+                </div>
+
+                <div class="features-section">
+                    <h4 class="features-title">✅ What You Get:</h4>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Everything in Pro Plan, plus:</p>
+                    <ul class="features-list">
+                        <li>Full-stack development (custom front/backend)</li>
+                        <li>Custom database integration (e.g., inventory, users, bookings)</li>
+                        <li>API integrations (e.g., payment gateways, CRMs, chatbots)</li>
+                        <li>Advanced animations & interactivity</li>
+                        <li>Cloud storage up to 20GB</li>
+                        <li>Role-based admin panel/dashboard</li>
+                        <li>Multi-language support (optional)</li>
+                        <li>Staging environment for updates</li>
+                    </ul>
+                </div>
+
+                <div class="maintenance-section">
+                    <h4 class="maintenance-title">🔄 Monthly Maintenance (R2,000/month, optional):</h4>
+                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 0.5rem;">Pro Maintenance, plus:</p>
+                    <ul class="features-list">
+                        <li>Advanced database management</li>
+                        <li>Server management & cloud scaling</li>
+                        <li>Advanced analytics/reporting</li>
+                        <li>High-priority support</li>
+                    </ul>
+                </div>
+
+                <div class="example-section">
+                    <h4 class="example-title">🧩 Example:</h4>
+                    <p class="example-text">A real estate company with searchable property listings, agent logins, and appointment bookings.</p>
+                </div>
+
+                <button class="cta-button">Get Started</button>
+            </div>
+        </div>
+    </div>
   <footer class="footer">
     <div class="container2">
       <div class="footer_inner">
         <div class="c-footer">
           <div class="layout">
             <div class="layout_item w-50">
+              <p class="newsletter-description">Subscribe to our newsletter for the latest web development tips and exclusive offers.</p>
               <div class="newsletter">
+                <form method="POST" action="#" class="newsletter">
+                  {% csrf_token %}
+                <input 
+                  type="email" 
+                  name="email"
+                  placeholder="Enter your email to subscribe" 
+                  class="newsletter-input"
+                >
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+                </form>
               </div>
             </div>
             <div class="layout_item w-25">

@@ -28,6 +28,7 @@ def index(request):
     posts = Post.objects.all()
     context = {
         'posts': posts,
+        'RECAPTCHA_PUBLIC_KEY': settings.RECAPTCHA_PUBLIC_KEY,
     }
     return render(request, 'core/index.html', context)
 

@@ -8,7 +8,7 @@ PROJECT_DIR = Path(__file__).resolve().parent
 
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='.vercel.app,127.0.0.1,.com').split(',')
+ALLOWED_HOSTS = [host.strip() for host in config('ALLOWED_HOSTS', default='.vercel.app,127.0.0.1,localhost,.com').split(',')]
 ADMIN_PATH = config('ADMIN_PATH')
 
 INSTALLED_APPS = [
@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'emails',
     'crispy_forms',
     'axes',
+    'django_recaptcha',
     #'crispy_bootstrap4',
 ]
 
