@@ -26,7 +26,6 @@ INSTALLED_APPS = [
     'emails',
     'crispy_forms',
     'axes',
-    'django_recaptcha',
     #'crispy_bootstrap4',
 ]
 
