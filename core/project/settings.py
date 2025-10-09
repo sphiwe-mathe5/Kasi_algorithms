@@ -231,38 +231,36 @@ LOGIN_URL = 'login'
 # ==========================
 # ✅ Content Security Policy
 # ==========================
-CSP_DEFAULT_SRC = ("'self'",)
-CSP_SCRIPT_SRC = (
-    "'self'",
-    "'unsafe-inline'",  # needed if you use inline JS
-    "'unsafe-eval'",  # needed for some frameworks
-    "https://static.cloudflareinsights.com",  # Cloudflare analytics
-)
-CSP_STYLE_SRC = (
-    "'self'",
-    "'unsafe-inline'",  # allows inline <style>
-    "https://fonts.googleapis.com",
-)
-CSP_FONT_SRC = (
-    "'self'",
-    "https://fonts.gstatic.com",
-)
-CSP_IMG_SRC = (
-    "'self'",
-    "data:",  # allows base64 images
-    "https://*",  # images from any https source
-)
-CSP_CONNECT_SRC = (
-    "'self'",
-    "https://kasialgorithms.co.za",
-    "https://api.kasialgorithms.co.za",
-)
-CSP_FRAME_ANCESTORS = ("'none'",)
-CSP_BASE_URI = ("'self'",)
-CSP_FORM_ACTION = ("'self'",)
-CSP_OBJECT_SRC = ("'none'",)
-CSP_MEDIA_SRC = ("'self'",)
-CSP_MANIFEST_SRC = ("'self'",)
+# New django-csp 4.0+ format
+CONTENT_SECURITY_POLICY = {
+    "DIRECTIVES": {
+        "default-src": ("'self'",),
+        "script-src": (
+            "'self'",
+            "'unsafe-inline'",
+            "'unsafe-eval'",
+            "https://static.cloudflareinsights.com",
+        ),
+        "style-src": (
+            "'self'",
+            "'unsafe-inline'",
+            "https://fonts.googleapis.com",
+        ),
+        "img-src": ("'self'", "data:", "https://*"),
+        "font-src": ("'self'", "https://fonts.gstatic.com"),
+        "connect-src": (
+            "'self'",
+            "https://kasialgorithms.co.za",
+            "https://api.kasialgorithms.co.za",
+        ),
+        "form-action": ("'self'",),
+        "frame-ancestors": ("'none'",),
+        "object-src": ("'none'",),
+        "media-src": ("'self'",),
+        "base-uri": ("'self'",),
+    }
+}
+
 
 SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
 SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin'
