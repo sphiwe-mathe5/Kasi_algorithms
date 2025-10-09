@@ -12,7 +12,7 @@ ALLOWED_HOSTS = [host.strip() for host in config('ALLOWED_HOSTS', default='.verc
 ADMIN_PATH = config('ADMIN_PATH')
 
 INSTALLED_APPS = [
-    'csp',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -31,7 +31,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'csp.middleware.CSPMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -227,42 +226,3 @@ else:
 LOGIN_REDIRECT_URL = 'index'
 LOGIN_URL = 'login'
 
-
-# ==========================
-# ✅ Content Security Policy
-# ==========================
-# New django-csp 4.0+ format
-CONTENT_SECURITY_POLICY = {
-    "DIRECTIVES": {
-        "default-src": ("'self'",),
-        "script-src": (
-            "'self'",
-            "'unsafe-inline'",
-            "'unsafe-eval'",
-            "https://static.cloudflareinsights.com",
-        ),
-        "style-src": (
-            "'self'",
-            "'unsafe-inline'",
-            "https://fonts.googleapis.com",
-        ),
-        "img-src": ("'self'", "data:", "https://*"),
-        "font-src": ("'self'", "https://fonts.gstatic.com"),
-        "connect-src": (
-            "'self'",
-            "https://kasialgorithms.co.za",
-            "https://api.kasialgorithms.co.za",
-        ),
-        "form-action": ("'self'",),
-        "frame-ancestors": ("'none'",),
-        "object-src": ("'none'",),
-        "media-src": ("'self'",),
-        "base-uri": ("'self'",),
-    }
-}
-
-
-SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
-SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin'
-SECURE_CROSS_ORIGIN_EMBEDDER_POLICY = 'require-corp'
-SECURE_CROSS_ORIGIN_RESOURCE_POLICY = 'same-origin'
