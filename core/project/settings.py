@@ -235,24 +235,41 @@ LOGIN_URL = 'login'
 CONTENT_SECURITY_POLICY = {
     "DIRECTIVES": {
         "default-src": ("'self'",),
+
         "script-src": (
             "'self'",
             "'unsafe-inline'",
             "'unsafe-eval'",
             "https://static.cloudflareinsights.com",
+            "https://cdnjs.cloudflare.com",  # ✅ allow Font Awesome JS (if used)
         ),
+
         "style-src": (
             "'self'",
             "'unsafe-inline'",
             "https://fonts.googleapis.com",
+            "https://cdnjs.cloudflare.com",  # ✅ allow Font Awesome CSS
+            "https://cdn.jsdelivr.net",      # optional — for JSDelivr-based assets
         ),
-        "img-src": ("'self'", "data:", "https://*"),
-        "font-src": ("'self'", "https://fonts.gstatic.com"),
+
+        "img-src": (
+            "'self'",
+            "data:",
+            "https://*",
+        ),
+
+        "font-src": (
+            "'self'",
+            "https://fonts.gstatic.com",
+            "https://cdnjs.cloudflare.com",  # ✅ allow font files from Cloudflare CDN
+        ),
+
         "connect-src": (
             "'self'",
             "https://kasialgorithms.co.za",
             "https://api.kasialgorithms.co.za",
         ),
+
         "form-action": ("'self'",),
         "frame-ancestors": ("'none'",),
         "object-src": ("'none'",),
@@ -261,8 +278,7 @@ CONTENT_SECURITY_POLICY = {
     }
 }
 
-
-SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
-SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin'
-SECURE_CROSS_ORIGIN_EMBEDDER_POLICY = 'require-corp'
-SECURE_CROSS_ORIGIN_RESOURCE_POLICY = 'same-origin'
+SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin"
+SECURE_CROSS_ORIGIN_EMBEDDER_POLICY = "require-corp"
+SECURE_CROSS_ORIGIN_RESOURCE_POLICY = "same-origin"

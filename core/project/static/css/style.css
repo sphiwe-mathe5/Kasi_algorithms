@@ -620,7 +620,7 @@ h1 {
 
 .image-container img {
   width: 80%;
-  max-width: 45%;
+  max-width: 35%;
   object-fit: contain;
   position: absolute;
   top: -28rem;
