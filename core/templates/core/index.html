@@ -331,32 +331,53 @@
                 </div>
                 <div id="animals" class="category active-category">
                     <h2>Kasi Algorithms Applications</h2>
-                    <div class="post-grid">
-                      {% for post in posts %}
-                      <div class="post-card">
-                          <div class="post-thumbnail">
-                              {% if post.image %}
-                                  <a href="javascript:void(0);" onclick="openModal('{{ post.title|escapejs }}', '{{ post.author.username|escapejs }}', '{{ post.date_posted|date:'j F, Y'|escapejs }}', '{{ post.content|escapejs }}')">
-                                      <img src="{{ post.image.url }}" alt="{{ post.title }}">
-                                  </a>
-                              {% else %}
-                                  <p>No image uploaded</p>
-                              {% endif %}
-                          </div>
-                          <div class="post-content">
-                              <a href="" class="post-title">{{ post.title }}</a>
-                              <p>{{ post.content|truncatewords:10 }}</p> 
-                              {% if post.url %}
-                              <span class="post-author">
-                                  <a href="{{ post.url }}" target="_blank" class="hover-underline">{{ post.url }}</a>
-                              </span>
-                          {% endif %}
-                          </div>
-                      </div>
-                      {% empty %}
-                      <p>No Applications Deployed Yet.</p>
-                      {% endfor %}
+
+                  <div class="post-grid">
+                    {% for post in posts %}
+                    <div class="post-card">
+                        <div class="post-thumbnail">
+                            {% if post.image %}
+                                <a href="javascript:void(0);" onclick="openModal('{{ post.title|escapejs }}', '{{ post.author.username|escapejs }}', '{{ post.date_posted|date:'j F, Y'|escapejs }}', '{{ post.content|escapejs }}')">
+                                    <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                                </a>
+                            {% else %}
+                                <p>No image uploaded</p>
+                            {% endif %}
+                        </div>
+                        <div class="post-content">
+                            <a href="" class="post-title">{{ post.title }}</a>
+                            <p>{{ post.content|truncatewords:10 }}</p> 
+                            {% if post.url %}
+                            <span class="post-author">
+                                <a href="{{ post.url }}" target="_blank" class="hover-underline">{{ post.url }}</a>
+                            </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p>No Applications Deployed Yet.</p>
+                    {% endfor %}
+                    
+                    <!-- Manually added HTML posts below -->
+                    <div class="post-card">
+                        <div class="post-thumbnail">
+                            <a href="javascript:void(0);" onclick="openModal('Birthday Moments', 'Kasi Algorithms', '9 January 2026', 'My Birthday Moments is a simple, personal platform where you create a shareable birthday page that turns your birthday into a lasting experience. Instead of scattered texts and temporary social posts, friends and family can send messages, wishes, and love in one place, all tied to your special day. Each birthday becomes a moment you can revisit — with memories, interactions, and reflections saved over time — so your birthday isn’t just a date on the calendar, but something meaningful you can return to year after year.')">
+                                <img src="/static/images/favicon.png" alt="My Custom Post">
+                            </a>
+                        </div>
+                        <div class="post-content">
+                            <a href="" class="post-title">Birthday Moments</a>
+                            <p>My Birthday Moments is a simpleL...</p>
+                            <span class="post-author">
+                                <a href="https://mybirthdaymoment.com/" target="_blank" class="hover-underline">https://mybirthdaymoment.com/</a>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Add more manual posts here with same structure -->
+                    
                   </div>
+
                 </div>
 
                 <div id="postModal" class="modal">
