@@ -11,7 +11,7 @@ from core.models import Post
 from emails.models import EmailTemplate, SentEmail
 from submit.models import Profile
 from axes.models import AccessAttempt, AccessLog
-from core.views import index, subscribe, about, enquire,contact, terms, prompt,  optout, PostListView, PostDetailView, PostCreateView,PostUpdateView,PostDeleteView, UserPostListView
+from core.views import index, subscribe, about, enquire,contact, terms, prompt,  optout, nazire, PostListView, PostDetailView, PostCreateView,PostUpdateView,PostDeleteView, UserPostListView
 
 class OTPAdmin(OTPAdminSite):
     pass
