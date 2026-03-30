@@ -171,6 +171,9 @@ def terms(request):
 def prompt(request):
     return render(request, 'core/prompt.html')
 
+def nazire(request):
+    return render(request, 'core/nazire.html')
+    
 def enquire(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -240,4 +243,3 @@ def optout(request):
         return redirect('prompt')  # or wherever you want to redirect after form submission
 
     return redirect('index')  # If not a POST request, redirect to index or another appropriate page
-#ymws rmpb vhre njwh
