@@ -38,6 +38,7 @@ urlpatterns = [
     path('user/<str:username>', UserPostListView.as_view(), name='user-posts'),
     path('subscribe/', subscribe, name='subscribe'),
     path('about/', about, name='about'),
+    path('nazire/', nazire, name='nazire'),
     path('', include('submit.urls')),
     path('emails/', include('emails.urls')),
     path('enquire/', enquire, name='enquire'),
