@@ -1,235 +1,262 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-        <link rel="icon" href="{% static 'images/KasiAlgo2.png' %}">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
-        <title>Kasi Algorithms</title>
-    </head>
-<style>
-    
-    h1, h2 {
-        margin: 0 0 20px;
-    }
-
-    main {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: white;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin-top: 5rem;
-    }
-
-    section {
-        margin-bottom: 40px;
-    }
-
-    h2 {
-        color: #004D40;
-        font-size: 1.5em;
-    }
-
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
-
-    ul li {
-        margin-bottom: 10px;
-    }
-
-
-    .legal-content p, .legal-content ul {
-        line-height: 1.6;
-    }
-
-    a {
-        color: #F57C00;
-        text-decoration: none;
-    }
-
-
-    footer {
-        background-color: #004D40;
-        color: white;
-        text-align: center;
-        padding: 15px 0;
-        position: relative;
-        bottom: 0;
-        width: 100%;
-    }
-
-</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/premium.css' %}">
+    <link rel="icon" href="{% static 'images/KasiAlgo2.png' %}">
+    <title>Terms & Privacy | Kasi Algorithms</title>
+    <style>
+        .legal-content h2 {
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        .legal-content h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+            font-size: 1.5rem;
+        }
+        .legal-content p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        .legal-content ul {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            line-height: 1.8;
+        }
+        .legal-content ul li {
+            margin-bottom: 0.8rem;
+        }
+        .legal-content a {
+            color: var(--primary);
+            font-weight: 500;
+        }
+        .legal-content a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+    </style>
+</head>
 <body>
-    <header class="header">
-        <nav class="navbar">
-            <div class="nav__logo">
-                <a href="{% url 'index' %}" class="logo">
-                    <img src="{% static 'images/KasiAlgo.png' %}" alt="Logo" width="270" height="50">
-                </a>
-            </div>
-            <button class="hamburger" id="hamburger">
-              <i class="fa-solid fa-bars"></i> 
-          </button>
-            <ul class="nav__links"  id="nav-menu">
-              <li class="nav-item"><a href="{% url 'about' %}" class="hover-underline">Learn More</a></li>
-              <li class="nav-item"><a href="{% url 'about' %}#services" class="hover-underline">Services</a></li>
-              <li class="nav-item"><a href="{% url 'about' %}#developers" class="hover-underline">Developers</a></li>
-              <li class="nav-item"><a href="{% url 'about' %}#team" class="hover-underline">Team</a></li>
+
+    <!-- Modern Navbar -->
+    <nav class="navbar-modern" id="navbar">
+        <div class="container nav-container" style="justify-content: center; position: relative;">
+            <a href="{% url 'index' %}" class="nav-brand" style="position: absolute; left: 2rem;">
+                <img src="{% static 'images/KasiAlgo.png' %}" alt="Kasi Algorithms" class="nav-logo" style="height: 35px; filter: none;">
+            </a>
+            <ul class="nav-links">
+                <li><a href="{% url 'about' %}" style="color: var(--text-main);">Company</a></li>
+                <li><a href="{% url 'index' %}#services">Services</a></li>
+                <li><a href="{% url 'index' %}#portfolio">Portfolio</a></li>
+                <li><a href="mailto:kasialgorithms@gmail.com">Contact</a></li>
+            </ul>
+            <div style="position: absolute; right: 2rem;">
                 {% if user.is_authenticated %}
-                <li class="nav-item"><a href="{% url 'user-posts' user.username %}" class="hover-underline">Profile</a></li>                
+                <a href="{% url 'user-posts' user.username %}" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Profile</a>
                 {% endif %}
-            </ul>
-        </nav>
-    </header>
+            </div>
+        </div>
+    </nav>
 
-    <main class="legal-content">
-        <section class="terms">
-            <h2>Terms and Conditions</h2>
+    <!-- Page Header -->
+    <section class="hero" style="min-height: 40vh; padding-top: 150px; align-items: flex-start;">
+        <div class="container" style="text-align: center;">
+            <div class="hero-content reveal" style="align-items: center;">
+                <h1 class="text-gradient">Legal Information</h1>
+                <p class="lead">Terms & Conditions and Privacy Policy.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="section" style="background: var(--surface); padding-top: 4rem;">
+        <div class="container">
+            <div class="legal-content reveal" style="max-width: 900px; margin: 0 auto; background: var(--surface-elevated); padding: 4rem; border-radius: var(--border-radius-lg); border: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                
+                <section id="terms" class="terms">
+                    <h2 class="text-gradient-brand">Terms and Conditions</h2>
+                    
+                    <h3>1. Introduction</h3>
+                    <p>Welcome to <strong>Kasi Algorithms</strong>. By accessing and using our platform, you agree to be bound by these <strong>Terms and Conditions</strong>. Please read these terms carefully, as they outline your rights, responsibilities, and the conditions under which you may use our services. If you do not agree to these terms, you must not use our platform.</p>
+                    
+                    <h3>2. Our Services</h3>
+                    <p>Kasi Algorithms is dedicated to building innovative software solutions that solve challenges faced by communities in townships. Our platform allows users to submit ideas for potential solutions, and we work to turn these ideas into real-world applications.</p>
             
-            <h3>1. Introduction</h3>
-            <p>
-                Welcome to <strong>Kasi Algorithms</strong>. By accessing and using our platform, you agree to be bound by these <strong>Terms and Conditions</strong>. Please read these terms carefully, as they outline your rights, responsibilities, and the conditions under which you may use our services. If you do not agree to these terms, you must not use our platform.
-            </p>
+                    <h3>3. User Responsibilities</h3>
+                    <ul>
+                        <li><strong>Content Responsibility:</strong> You are responsible for any content you submit or upload to the platform. This includes but is not limited to ideas, suggestions, text, images, or any other type of content.</li>
+                        <li><strong>Adherence to Policies:</strong> You agree to follow our platform’s content policies and not to post content that is unlawful, harmful, defamatory, or violates the rights of others.</li>
+                        <li><strong>Respect for Intellectual Property:</strong> You agree not to infringe on any intellectual property rights, including but not limited to copyright, trademark, or patent rights, when using our platform or submitting ideas.</li>
+                        <li><strong>Respectful Communication:</strong> You agree to engage respectfully with other users, our team, and the community, fostering a positive and collaborative environment.</li>
+                    </ul>
             
-            <h3>2. Our Services</h3>
-            <p>
-                Kasi Algorithms is dedicated to building innovative software solutions that solve challenges faced by communities in townships. Our platform allows users to submit ideas for potential solutions, and we work to turn these ideas into real-world applications.
-            </p>
-    
-            <h3>3. User Responsibilities</h3>
-            <ul>
-                <li><strong>Content Responsibility:</strong> You are responsible for any content you submit or upload to the platform. This includes but is not limited to ideas, suggestions, text, images, or any other type of content.</li>
-                <li><strong>Adherence to Policies:</strong> You agree to follow our platform’s content policies and not to post content that is unlawful, harmful, defamatory, or violates the rights of others.</li>
-                <li><strong>Respect for Intellectual Property:</strong> You agree not to infringe on any intellectual property rights, including but not limited to copyright, trademark, or patent rights, when using our platform or submitting ideas.</li>
-                <li><strong>Respectful Communication:</strong> You agree to engage respectfully with other users, our team, and the community, fostering a positive and collaborative environment.</li>
-            </ul>
-    
-            <h3>4. Intellectual Property</h3>
-            <ul>
-                <li><strong>Ownership of Code and Software:</strong> All software, code, applications, algorithms, designs, and other intellectual property created by Kasi Algorithms or in collaboration with users on the platform are the exclusive property of Kasi Algorithms. This includes any improvements, modifications, or updates to existing software or products.</li>
-                <li><strong>Licensing:</strong> Users are granted a limited, non-exclusive, and revocable license to use the platform and any software provided for its intended purpose. You do not own the platform or the software, and your use is subject to the limitations defined in these Terms and Conditions.</li>
-                <li><strong>User Ideas:</strong> If you submit an idea or suggestion for a solution, Kasi Algorithms has the right to use, modify, and develop those ideas into applications. However, submitting an idea does not grant you ownership of the resulting product or application. All intellectual property rights for any developed solution remain with Kasi Algorithms.</li>
-                <li><strong>No Reverse Engineering:</strong> You agree not to reverse-engineer, decompile, or attempt to extract the source code of any software provided by Kasi Algorithms, unless specifically allowed by law or permitted under these Terms.</li>
-            </ul>
-    
-            <h3>5. User Idea Submission</h3>
-            <p>
-                Our platform allows users to submit ideas that could help solve problems in townships. By submitting your idea, you acknowledge and agree to the following:
-            </p>
-            <ul>
-                <li><strong>Idea Ownership:</strong> When you submit an idea or suggestion, you grant Kasi Algorithms an irrevocable, worldwide, royalty-free license to use, develop, or modify the idea in any manner.</li>
-                <li><strong>Collaboration on Development:</strong> Kasi Algorithms may collaborate with you or other users to build solutions based on the ideas submitted. However, Kasi Algorithms retains full ownership of the intellectual property rights to the final product, application, or solution developed.</li>
-                <li><strong>Confidentiality:</strong> While we take all reasonable steps to protect your intellectual property, submitting an idea on the platform does not create a confidential relationship between you and Kasi Algorithms unless explicitly agreed upon in writing.</li>
-            </ul>
-    
-            <h3>6. Modifications to Terms</h3>
-            <p>
-                Kasi Algorithms reserves the right to modify or update these Terms and Conditions at any time without prior notice. Any changes will be effective immediately upon posting on the platform, and it is your responsibility to review these terms regularly to stay informed about any updates.
-            </p>
-    
-            <h3>7. Limitation of Liability</h3>
-            <p>
-                Kasi Algorithms will not be liable for any direct, indirect, incidental, special, or consequential damages arising out of or related to your use of the platform or any services provided. This includes, but is not limited to, loss of data, profits, or goodwill, regardless of whether such damages were foreseeable.
-            </p>
-    
-            <h3>8. Termination of Access</h3>
-            <p>
-                Kasi Algorithms reserves the right to suspend or terminate your access to the platform at any time, without notice, if you violate any of the terms or engage in behavior deemed inappropriate or harmful to the platform or community.
-            </p>
-    
-            <h3>9. Governing Law</h3>
-            <p>
-                These Terms and Conditions shall be governed by and construed in accordance with the laws of [insert country or jurisdiction]. Any disputes arising from these terms shall be resolved in the competent courts of [insert location].
-            </p>
-        </section>
-    
-        <section class="privacy">
-            <h2>Privacy Policy</h2>
-    
-            <h3>1. Introduction</h3>
-            <p>
-                At <strong>Kasi Algorithms</strong>, we value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, store, and protect your personal data when you use our platform. By using our services, you consent to the practices outlined in this policy.
-            </p>
-    
-            <h3>2. Information We Collect</h3>
-            <ul>
-                <li><strong>Personal Identification Information:</strong> This includes your name, email address, and contact details when you sign up for the platform or communicate with us.</li>
-                <li><strong>Activity Data:</strong> We collect information about how you use the platform, including features you interact with, the time spent on the platform, and other usage patterns.</li>
-                <li><strong>User-Submitted Content:</strong> Any ideas, suggestions, or content you submit to the platform, including proposals for software solutions, are collected and stored.</li>
-            </ul>
-    
-            <h3>3. How We Use Your Information</h3>
-            <ul>
-                <li><strong>Improving User Experience:</strong> Your data helps us to tailor and improve the services we provide on the platform.</li>
-                <li><strong>Communication:</strong> We may use your contact information to send you updates, notifications, or responses to your inquiries.</li>
-                <li><strong>Idea Development:</strong> Your ideas and suggestions may be used by Kasi Algorithms for development purposes, including creating new applications or solutions.</li>
-            </ul>
-    
-            <h3>4. Data Security</h3>
-            <p>
-                We take appropriate measures to protect your personal information from unauthorized access, alteration, or destruction. However, please note that no method of data transmission over the internet or electronic storage is completely secure, and we cannot guarantee absolute security.
-            </p>
-    
-            <h3>5. Sharing Your Information</h3>
-            <p>We do not share your personal information with third parties without your consent, except in the following cases:</p>
-            <ul>
-                <li><strong>Legal Requirements:</strong> If required by law, we may disclose your information to comply with legal obligations or requests from authorities.</li>
-                <li><strong>Service Providers:</strong> We may share your data with trusted third-party service providers who assist us in operating our platform, such as hosting or communication services. These third parties are obligated to protect your information and only use it for the purposes specified.</li>
-            </ul>
-    
-            <h3>6. Data Retention</h3>
-            <p>
-                We retain your personal data only for as long as necessary to fulfill the purposes outlined in this Privacy Policy. You can request the deletion of your personal data by contacting us directly, and we will comply in accordance with applicable laws.
-            </p>
-    
-            <h3>7. User Rights</h3>
-            <p>You have the following rights regarding your personal information:</p>
-            <ul>
-                <li><strong>Access:</strong> You can request a copy of the personal data we hold about you.</li>
-                <li><strong>Correction:</strong> You can request that we update or correct any inaccurate information.</li>
-                <li><strong>Deletion:</strong> You can request that we delete your personal data, subject to certain legal exceptions.</li>
-            </ul>
-    
-            <h3>8. Changes to the Privacy Policy</h3>
-            <p>
-                Kasi Algorithms reserves the right to update this Privacy Policy at any time. Any changes will be posted on this page, and the updated policy will take effect immediately upon posting. It is your responsibility to review this policy periodically.
-            </p>
-    
-            <h3>9. Contact Us</h3>
-            <p>
-                If you have any questions or concerns about our Terms and Conditions or Privacy Policy, please contact us at <a href="mailto:kasialgorithms@gmail.com">kasialgorithms@gmail.com</a>.
-            </p>
-        </section>
+                    <h3>4. Intellectual Property</h3>
+                    <ul>
+                        <li><strong>Ownership of Code and Software:</strong> All software, code, applications, algorithms, designs, and other intellectual property created by Kasi Algorithms or in collaboration with users on the platform are the exclusive property of Kasi Algorithms. This includes any improvements, modifications, or updates to existing software or products.</li>
+                        <li><strong>Licensing:</strong> Users are granted a limited, non-exclusive, and revocable license to use the platform and any software provided for its intended purpose. You do not own the platform or the software, and your use is subject to the limitations defined in these Terms and Conditions.</li>
+                        <li><strong>User Ideas:</strong> If you submit an idea or suggestion for a solution, Kasi Algorithms has the right to use, modify, and develop those ideas into applications. However, submitting an idea does not grant you ownership of the resulting product or application. All intellectual property rights for any developed solution remain with Kasi Algorithms.</li>
+                        <li><strong>No Reverse Engineering:</strong> You agree not to reverse-engineer, decompile, or attempt to extract the source code of any software provided by Kasi Algorithms, unless specifically allowed by law or permitted under these Terms.</li>
+                    </ul>
+            
+                    <h3>5. User Idea Submission</h3>
+                    <p>Our platform allows users to submit ideas that could help solve problems in townships. By submitting your idea, you acknowledge and agree to the following:</p>
+                    <ul>
+                        <li><strong>Idea Ownership:</strong> When you submit an idea or suggestion, you grant Kasi Algorithms an irrevocable, worldwide, royalty-free license to use, develop, or modify the idea in any manner.</li>
+                        <li><strong>Collaboration on Development:</strong> Kasi Algorithms may collaborate with you or other users to build solutions based on the ideas submitted. However, Kasi Algorithms retains full ownership of the intellectual property rights to the final product, application, or solution developed.</li>
+                        <li><strong>Confidentiality:</strong> While we take all reasonable steps to protect your intellectual property, submitting an idea on the platform does not create a confidential relationship between you and Kasi Algorithms unless explicitly agreed upon in writing.</li>
+                    </ul>
+            
+                    <h3>6. Modifications to Terms</h3>
+                    <p>Kasi Algorithms reserves the right to modify or update these Terms and Conditions at any time without prior notice. Any changes will be effective immediately upon posting on the platform, and it is your responsibility to review these terms regularly to stay informed about any updates.</p>
+            
+                    <h3>7. Limitation of Liability</h3>
+                    <p>Kasi Algorithms will not be liable for any direct, indirect, incidental, special, or consequential damages arising out of or related to your use of the platform or any services provided. This includes, but is not limited to, loss of data, profits, or goodwill, regardless of whether such damages were foreseeable.</p>
+            
+                    <h3>8. Termination of Access</h3>
+                    <p>Kasi Algorithms reserves the right to suspend or terminate your access to the platform at any time, without notice, if you violate any of the terms or engage in behavior deemed inappropriate or harmful to the platform or community.</p>
+            
+                    <h3>9. Governing Law</h3>
+                    <p>These Terms and Conditions shall be governed by and construed in accordance with the laws of South Africa. Any disputes arising from these terms shall be resolved in the competent courts.</p>
+                </section>
+                
+                <hr style="border: none; border-top: 1px solid var(--border); margin: 4rem 0;">
 
-        <section class="acknowledgement">
-            <h2>Resources Acknowledgements</h2>
-            <p>
-                We would like to acknowledge the following sources for the images used on our website:
-            </p>
-            <ul>
-                <li>Icons from Font Awesome: <a href="https://fontawesome.com/">fontawesome.com</a></li>
-                <li>Illustrations from Freepik: <a href="https://www.freepik.com/">freepik.com</a></li>
-            </ul>
-        </section>
-    </main>
+                <section id="privacy" class="privacy">
+                    <h2 class="text-gradient-brand">Privacy Policy</h2>
+            
+                    <h3>1. Introduction</h3>
+                    <p>At <strong>Kasi Algorithms</strong>, we value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, store, and protect your personal data when you use our platform. By using our services, you consent to the practices outlined in this policy.</p>
+            
+                    <h3>2. Information We Collect</h3>
+                    <ul>
+                        <li><strong>Personal Identification Information:</strong> This includes your name, email address, and contact details when you sign up for the platform or communicate with us.</li>
+                        <li><strong>Activity Data:</strong> We collect information about how you use the platform, including features you interact with, the time spent on the platform, and other usage patterns.</li>
+                        <li><strong>User-Submitted Content:</strong> Any ideas, suggestions, or content you submit to the platform, including proposals for software solutions, are collected and stored.</li>
+                    </ul>
+            
+                    <h3>3. How We Use Your Information</h3>
+                    <ul>
+                        <li><strong>Improving User Experience:</strong> Your data helps us to tailor and improve the services we provide on the platform.</li>
+                        <li><strong>Communication:</strong> We may use your contact information to send you updates, notifications, or responses to your inquiries.</li>
+                        <li><strong>Idea Development:</strong> Your ideas and suggestions may be used by Kasi Algorithms for development purposes, including creating new applications or solutions.</li>
+                    </ul>
+            
+                    <h3>4. Data Security</h3>
+                    <p>We take appropriate measures to protect your personal information from unauthorized access, alteration, or destruction. However, please note that no method of data transmission over the internet or electronic storage is completely secure, and we cannot guarantee absolute security.</p>
+            
+                    <h3>5. Sharing Your Information</h3>
+                    <p>We do not share your personal information with third parties without your consent, except in the following cases:</p>
+                    <ul>
+                        <li><strong>Legal Requirements:</strong> If required by law, we may disclose your information to comply with legal obligations or requests from authorities.</li>
+                        <li><strong>Service Providers:</strong> We may share your data with trusted third-party service providers who assist us in operating our platform, such as hosting or communication services. These third parties are obligated to protect your information and only use it for the purposes specified.</li>
+                    </ul>
+            
+                    <h3>6. Data Retention</h3>
+                    <p>We retain your personal data only for as long as necessary to fulfill the purposes outlined in this Privacy Policy. You can request the deletion of your personal data by contacting us directly, and we will comply in accordance with applicable laws.</p>
+            
+                    <h3>7. User Rights</h3>
+                    <p>You have the following rights regarding your personal information:</p>
+                    <ul>
+                        <li><strong>Access:</strong> You can request a copy of the personal data we hold about you.</li>
+                        <li><strong>Correction:</strong> You can request that we update or correct any inaccurate information.</li>
+                        <li><strong>Deletion:</strong> You can request that we delete your personal data, subject to certain legal exceptions.</li>
+                    </ul>
+            
+                    <h3>8. Changes to the Privacy Policy</h3>
+                    <p>Kasi Algorithms reserves the right to update this Privacy Policy at any time. Any changes will be posted on this page, and the updated policy will take effect immediately upon posting. It is your responsibility to review this policy periodically.</p>
+            
+                    <h3>9. Contact Us</h3>
+                    <p>If you have any questions or concerns about our Terms and Conditions or Privacy Policy, please contact us at <a href="mailto:kasialgorithms@gmail.com">kasialgorithms@gmail.com</a>.</p>
+                </section>
+        
+            </div>
+        </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2024 Kasi Algorithms. All Rights Reserved.</p>
+    <!-- Modern Footer -->
+    <footer class="footer-modern">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col" style="grid-column: span 2;">
+                    <img src="{% static 'images/KasiAlgo.png' %}" alt="Kasi Algorithms" style="height: 40px; filter: none; margin-bottom: 1.5rem;">
+                    <p style="color: var(--text-muted); max-width: 400px; margin-bottom: 2rem;">Architecting the future of African enterprise through rigorous software engineering, artificial intelligence, and digital transformation.</p>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="https://www.linkedin.com/company/109209189/" target="_blank" style="color: var(--text-muted); font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61561356537135&mibextid=LQQJ4d" target="_blank" style="color: var(--text-muted); font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/kasialgorithms/profilecard/?igsh=MTVzYXJpMzhnZWJ5bg==" target="_blank" style="color: var(--text-muted); font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h5>Services</h5>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'index' %}#services">Software Engineering</a></li>
+                        <li><a href="{% url 'index' %}#services">AI Automation</a></li>
+                        <li><a href="{% url 'index' %}#services">Digital Transformation</a></li>
+                        <li><a href="{% url 'index' %}#services">Growth Platforms</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Company</h5>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+                        <li><a href="mailto:kasialgorithms@gmail.com">Contact</a></li>
+                        <li><a href="#terms">Terms & Conditions</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Kasi Algorithms. All rights reserved.</p>
+                <button id="scrollToTop" style="background: none; border: none; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem;">
+                    Back to top <i class="fas fa-arrow-up"></i>
+                </button>
+            </div>
+        </div>
     </footer>
+
+    <!-- Intersection Observer & Interactions -->
     <script>
-        document.getElementById('hamburger').addEventListener('click', function() {
-          const navMenu = document.getElementById('nav-menu');
-          navMenu.classList.toggle('active');
-      });
-      </script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Scroll Reveals
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            // Navbar Scrolled State
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Scroll to Top
+            document.getElementById('scrollToTop').addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
 </body>
 </html>
-
-    
-

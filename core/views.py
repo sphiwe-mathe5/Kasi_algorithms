@@ -168,8 +168,6 @@ def terms(request):
     return render(request, 'core/terms.html')
 
 
-def prompt(request):
-    return render(request, 'core/prompt.html')
 
 def enquire(request):
     if request.method == 'POST':
@@ -236,8 +234,7 @@ def optout(request):
         # Notify the user
         messages.success(request, 'Your enquiry has been received. We will send you an email soon.')
         
-        # Redirect to a success page or another page
-        return redirect('prompt')  # or wherever you want to redirect after form submission
+        return redirect('index')  # Redirect to home after form submission
 
     return redirect('index')  # If not a POST request, redirect to index or another appropriate page
 #ymws rmpb vhre njwh

@@ -4,780 +4,322 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- Premium Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/premium.css' %}">
     <link rel="icon" href="{% static 'images/KasiAlgo2.png' %}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
-    <title>Kasi Algorithms</title>
-    <style>
-        .containers {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .headers {
-            text-align: center;
-            margin-bottom: 3rem;
-            color: black;
-        }
-
-        .company-name {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            font-weight: 300;
-            margin-bottom: 1rem;
-        }
-
-        .included-features {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 1.5rem;
-            margin-bottom: 3rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .included-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .included-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 0.5rem;
-            list-style: none;
-        }
-
-        .included-list li {
-            color: black;
-            font-size: 0.8rem;
-        }
-
-        .plans-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .plan-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .plan-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-        }
-
-        .plan-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #4CAF50, #45a049);
-        }
-
-        .plan-card.professional::before {
-            background: linear-gradient(90deg, #2196F3, #1976D2);
-        }
-
-        .plan-card.premium::before {
-            background: linear-gradient(90deg, #f44336, #d32f2f);
-        }
-
-        .plan-header {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .plan-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .plan-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 0.5rem;
-        }
-
-        .plan-price {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #2196F3;
-            margin-bottom: 0.5rem;
-        }
-
-        .plan-subtitle {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .plan-ideal {
-            background: #f8f9fa;
-            padding: 0.75rem;
-            border-radius: 10px;
-            font-size: 0.85rem;
-            color: #555;
-            margin-bottom: 1.5rem;
-        }
-
-        .features-section {
-            margin-bottom: 1.5rem;
-        }
-
-        .features-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .features-list {
-            list-style: none;
-            margin-bottom: 1rem;
-        }
-
-        .features-list li {
-            padding: 0.3rem 0;
-            font-size: 0.9rem;
-            color: #555;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
-        }
-
-        .features-list li::before {
-            content: '✅';
-            flex-shrink: 0;
-        }
-
-        .maintenance-section {
-            background: #f8f9fa;
-            padding: 1rem;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-        }
-
-        .maintenance-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .example-section {
-            background: #e3f2fd;
-            padding: 1rem;
-            border-radius: 10px;
-            border-left: 4px solid #2196F3;
-        }
-
-        .example-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #1976D2;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .example-text {
-            font-size: 0.9rem;
-            color: #555;
-            font-style: italic;
-        }
-
-        .cta-button {
-            width: 100%;
-            padding: 1rem;
-            background: linear-gradient(135deg, #2196F3, #1976D2);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-        }
-
-        .cta-button:hover {
-            background: linear-gradient(135deg, #1976D2, #1565C0);
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-            
-            .company-name {
-                font-size: 2rem;
-            }
-            
-            .plans-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .included-list {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .newsletter {
-          display: flex;
-          gap: 10px;
-          max-width: 400px;
-          margin-top: 3rem;
-        }
-
-        .newsletter-input {
-          flex: 1;
-          padding: 12px 16px;
-          border: 1px solid #ddd;
-          border-radius: 6px;
-          font-size: 14px;
-          outline: none;
-        }
-
-        .newsletter-input:focus {
-          border-color: #2196F3;
-        }
-
-        .newsletter-btn {
-          padding: 12px 24px;
-          background: #2196F3;
-          color: white;
-          border: none;
-          border-radius: 6px;
-          cursor: pointer;
-          font-size: 14px;
-        }
-
-        .newsletter-btn:hover {
-          background: #1976D2;
-        }
-    </style>
+    <title>Kasi Algorithms | Digital Transformation & AI Solutions</title>
 </head>
 <body>
-  <header class="header">
-    <nav class="navbar">
-        <div class="nav__logo">
-            <a href="{% url 'index' %}" class="logo">
-                <img src="{% static 'images/KasiAlgo.png' %}" alt="Logo" width="270" height="50">
+
+    <!-- Modern Navbar -->
+    <nav class="navbar-modern" id="navbar">
+        <div class="container nav-container" style="justify-content: center; position: relative;">
+            <a href="{% url 'index' %}" class="nav-brand" style="position: absolute; left: 2rem;">
+                <img src="{% static 'images/KasiAlgo.png' %}" alt="Kasi Algorithms" class="nav-logo" style="height: 35px;">
             </a>
-        </div>
-        <button class="hamburger" id="hamburger">
-          <i class="fa-solid fa-bars"></i> 
-      </button>
-        <ul class="nav__links" class="hover-underline"  id="nav-menu">
-          <li class="nav-item"><a href="{% url 'about' %}" class="hover-underline">Learn More</a></li>
-          <li class="nav-item"><a href="{% url 'about' %}#services" class="hover-underline">Services</a></li>
-          <li class="nav-item"><a href="{% url 'about' %}#developers" class="hover-underline">Developers</a></li>
-          <li class="nav-item"><a href="{% url 'about' %}#team" class="hover-underline">Team</a></li>
-            {% if user.is_authenticated %}
-            <li class="nav-item"><a href="{% url 'user-posts' user.username %}" class="hover-underline">Profile</a></li>                
-            {% endif %}
-        </ul>
-    </nav>
-</header>
-{% if messages %}
-  <div id="notification" class="notification">
-      {% for message in messages %}
-          <p>{{ message }}</p>
-      {% endfor %}
-  </div>
-  <script>
-      setTimeout(function() {
-          document.getElementById('notification').style.display = 'none';
-      }, 5000);
-  </script>
-{% endif %}
-    <main class="main-content">       
-        <div class="content-section">
-            <div class="container">
-                <div class="toggle-container" id="toggleSlider">
-                    <div class="toggle-button" id="toggleBtn"></div>
-                    <button id="animalButton" onclick="showCategory('animals')">Applications</button>
-                    <button id="foodButton" onclick="showCategory('food')">Listings</button>
-                </div>
-                <div id="animals" class="category active-category">
-                    <h2>Kasi Algorithms Applications</h2>
-
-                  <div class="post-grid">
-                    {% for post in posts %}
-                    <div class="post-card">
-                        <div class="post-thumbnail">
-                            {% if post.image %}
-                                <a href="javascript:void(0);" onclick="openModal('{{ post.title|escapejs }}', '{{ post.author.username|escapejs }}', '{{ post.date_posted|date:'j F, Y'|escapejs }}', '{{ post.content|escapejs }}')">
-                                    <img src="{{ post.image.url }}" alt="{{ post.title }}">
-                                </a>
-                            {% else %}
-                                <p>No image uploaded</p>
-                            {% endif %}
-                        </div>
-                        <div class="post-content">
-                            <a href="" class="post-title">{{ post.title }}</a>
-                            <p>{{ post.content|truncatewords:10 }}</p> 
-                            {% if post.url %}
-                            <span class="post-author">
-                                <a href="{{ post.url }}" target="_blank" class="hover-underline">{{ post.url }}</a>
-                            </span>
-                            {% endif %}
-                        </div>
-                    </div>
-                    {% empty %}
-                    <p>No Applications Deployed Yet.</p>
-                    {% endfor %}
-                    
-                    <!-- Manually added HTML posts below -->
-                    <div class="post-card">
-                        <div class="post-thumbnail">
-                            <a href="javascript:void(0);" onclick="openModal('Birthday Moments', 'Kasi Algorithms', '9 January 2026', 'My Birthday Moments is a simple, personal platform where you create a shareable birthday page that turns your birthday into a lasting experience. Instead of scattered texts and temporary social posts, friends and family can send messages, wishes, and love in one place, all tied to your special day. Each birthday becomes a moment you can revisit — with memories, interactions, and reflections saved over time — so your birthday isn’t just a date on the calendar, but something meaningful you can return to year after year.')">
-                                <img src="/static/images/favicon.png" alt="My Custom Post">
-                            </a>
-                        </div>
-                        <div class="post-content">
-                            <a href="" class="post-title">Birthday Moments</a>
-                            <p>My Birthday Moments is a simpleL...</p>
-                            <span class="post-author">
-                                <a href="https://mybirthdaymoment.com/" target="_blank" class="hover-underline">https://mybirthdaymoment.com/</a>
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <!-- Add more manual posts here with same structure -->
-                    
-                  </div>
-
-                </div>
-
-                <div id="postModal" class="modal">
-                  <div class="modal-content">
-                      <span class="close" onclick="closeModal()">&times;</span>
-                      <h2 id="modal-post-title"></h2>
-                      <p id="modal-post-author"></p>
-                      <p id="modal-post-date"></p>
-                      <p id="modal-post-url"></p>
-                      <div id="modal-post-content"></div>
-                  </div>
-                </div>               
-                <div id="food" class="category">
-                    <h2>Community Listings</h2>
-                    <p>This Feature is not available yet</p>
-                </div>
-            </div>
-          </div>
-            <div class="responsive-container-block bigContainer">
-                <div class="responsive-container-block Container">
-                  <div class="imgContainer">
-                    <img class="blueDots" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/aw3.svg">
-                    <img class="mainImg" src="static\images\aboutus.png">
-                  </div>
-                  <div class="responsive-container-block textSide">
-                    <p class="text-blk heading">
-                      About Us
-                    </p>
-                    <p class="text-blk subHeading">
-                      Kasi Algorithms Solutions is a software development company focused on creating innovative and practical solutions
-                      for townships. The company’s goal is to address critical challenges faced by township communities by building
-                      custom software and mobile applications that enhance learning, development, and community problem-solving.
-                      Our goals are : 
-                    </p>
-                    <div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12">
-                      <div class="cardImgContainer">
-                        <img class="cardImg" src="static\images\deployment_17219705.png">
-                      </div>
-                      <div class="cardText">
-                        <p class="text-blk cardHeading">
-                          Build & Deploying
-                        </p>
-                        <p class="text-blk cardSubHeading">
-                          Software solutions tailored to the unique needs of townships.
-                        </p>
-                      </div>
-                    </div>
-                    <div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12">
-                      <div class="cardImgContainer">
-                        <img class="cardImg"  src="static\images\advanced_17400539.png">
-                      </div>
-                      <div class="cardText">
-                        <p class="text-blk cardHeading">
-                          Learning & Development
-                        </p>
-                        <p class="text-blk cardSubHeading">
-                          Encourage skills development through coding training.
-                        </p>
-                      </div>
-                    </div>
-                    <div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12">
-                      <div class="cardImgContainer">
-                        <img class="cardImg"  src="static\images\problem-solving_17656795.png">
-                      </div>
-                      <div class="cardText">
-                        <p class="text-blk cardHeading">
-                          Problems Solving
-                        </p>
-                        <p class="text-blk cardSubHeading">
-                          Solve key issues in townships, such as educations.
-                        </p>
-                      </div>
-                    </div>
-                    <div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12">
-                      <div class="cardImgContainer">
-                        <img class="cardImg"  src="static\images\united_1534938.png">
-                      </div>
-                      <div class="cardText">
-                        <p class="text-blk cardHeading">
-                          Collaboration
-                        </p>
-                        <p class="text-blk cardSubHeading">
-                          Establish Collaboration for problem solving.
-                        </p>
-                      </div>
-                    </div>
-                    <a href="{% url 'about' %}">
-                      <button class="explore">
-                        More About Kasi Algorithms
-                      </button>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            {% if is_paginated %}
-            <div class="pagination">
-                {% if page_obj.has_previous %}
-                    <a class="pagination-btn" href="?page=1">First</a>
-                    <a class="pagination-btn" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-                {% endif %}
-                
-                {% for num in page_obj.paginator.page_range %}
-                    {% if page_obj.number == num %}
-                        <a class="pagination-btn active" href="?page={{ num }}">{{ num }}</a>
-                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                        <a class="pagination-btn" href="?page={{ num }}">{{ num }}</a>
-                    {% endif %}
-                {% endfor %}
-                
-                {% if page_obj.has_next %}
-                    <a class="pagination-btn" href="?page={{ page_obj.next_page_number }}">Next</a>
-                    <a class="pagination-btn" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-                {% endif %}
-            </div>
-        {% endif %}
-        </div>                
-    </main>
-
-        <div class="containers">
-        <div class="headers">
-            <h1 class="company-name">Kasi Algorithms</h1>
-            <h2 class="section-title">Web Development Pricing Plans</h2>
-        </div>
-
-        <div class="included-features">
-            <h3 class="included-title">All plans include:</h3>
-            <ul class="included-list">
-                <li>✅ Mobile-responsive design</li>
-                <li>✅ SEO-friendly structure</li>
-                <li>✅ Fast loading times</li>
-                <li>✅ Unlimited image uploads</li>
-                <li>✅ Secure HTTPS (SSL)</li>
-                <li>✅ Free consultation & project brief session</li>
+            <ul class="nav-links">
+                <li><a href="{% url 'about' %}">Company</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="mailto:kasialgorithms@gmail.com">Contact</a></li>
             </ul>
-        </div>
-
-        <div class="plans-grid">
-            <!-- Starter Plan -->
-            <div class="plan-card starter">
-                <div class="plan-header">
-                    <div class="plan-icon">🟢</div>
-                    <h3 class="plan-name">Starter Plan</h3>
-                    <div class="plan-price">R5,000</div>
-                    <div class="plan-subtitle">(One-Time)</div>
-                    <div class="plan-ideal">
-                        <strong>Ideal for:</strong> Freelancers, personal portfolios, local small businesses
-                    </div>
-                </div>
-
-                <div class="features-section">
-                    <h4 class="features-title">✅ What You Get:</h4>
-                    <ul class="features-list">
-                        <li>Custom homepage + up to 3 key sections (e.g. About, Services, Contact)</li>
-                        <li>Basic contact form</li>
-                        <li>Social media integration</li>
-                        <li>One email setup (e.g., info@yourdomain.com)</li>
-                        <li>Basic SEO setup</li>
-                        <li>Static content site (HTML/CSS/JS)</li>
-                    </ul>
-                </div>
-
-                <div class="maintenance-section">
-                    <h4 class="maintenance-title">🔄 Monthly Maintenance (R500/month, optional):</h4>
-                    <ul class="features-list">
-                        <li>Domain + hosting support</li>
-                        <li>Weekly backups</li>
-                        <li>Uptime monitoring</li>
-                        <li>Minor text/image updates</li>
-                        <li>Basic analytics tracking</li>
-                    </ul>
-                </div>
-
-                <div class="example-section">
-                    <h4 class="example-title">🧩 Example:</h4>
-                    <p class="example-text">A personal trainer showcasing their services, testimonials, and a contact form.</p>
-                </div>
-
-                <button class="cta-button">Get Started</button>
-            </div>
-
-            <!-- Professional Plan -->
-            <div class="plan-card professional">
-                <div class="plan-header">
-                    <div class="plan-icon">🔵</div>
-                    <h3 class="plan-name">Professional Plan</h3>
-                    <div class="plan-price">R10,000</div>
-                    <div class="plan-subtitle">(One-Time)</div>
-                    <div class="plan-ideal">
-                        <strong>Ideal for:</strong> SMEs, bloggers, local e-commerce, agencies
-                    </div>
-                </div>
-
-                <div class="features-section">
-                    <h4 class="features-title">✅ What You Get:</h4>
-                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Everything in Starter Plan, plus:</p>
-                    <ul class="features-list">
-                        <li>Dynamic CMS (e.g., WordPress, Webflow, or custom)</li>
-                        <li>Blog or portfolio module</li>
-                        <li>Advanced contact forms (e.g., file uploads, custom fields)</li>
-                        <li>Performance optimization</li>
-                        <li>Cloud storage setup (up to 5GB for files/media)</li>
-                    </ul>
-                </div>
-
-                <div class="maintenance-section">
-                    <h4 class="maintenance-title">🔄 Monthly Maintenance (R1,000/month, optional):</h4>
-                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 0.5rem;">All Starter Maintenance, plus:</p>
-                    <ul class="features-list">
-                        <li>CMS/plugin updates</li>
-                        <li>Cloud storage support</li>
-                        <li>Form/lead integration maintenance</li>
-                        <li>Basic database support (e.g., blog entries, users)</li>
-                    </ul>
-                </div>
-
-                <div class="example-section">
-                    <h4 class="example-title">🧩 Example:</h4>
-                    <p class="example-text">A bakery showcasing weekly menus, blog recipes, and an order inquiry form.</p>
-                </div>
-
-                <button class="cta-button">Get Started</button>
-            </div>
-
-            <!-- Premium Plan -->
-            <div class="plan-card premium">
-                <div class="plan-header">
-                    <div class="plan-icon">🔴</div>
-                    <h3 class="plan-name">Premium Plan</h3>
-                    <div class="plan-price">R20,000</div>
-                    <div class="plan-subtitle">(One-Time)</div>
-                    <div class="plan-ideal">
-                        <strong>Ideal for:</strong> Established brands, medium-sized businesses, advanced content needs
-                    </div>
-                </div>
-
-                <div class="features-section">
-                    <h4 class="features-title">✅ What You Get:</h4>
-                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Everything in Pro Plan, plus:</p>
-                    <ul class="features-list">
-                        <li>Full-stack development (custom front/backend)</li>
-                        <li>Custom database integration (e.g., inventory, users, bookings)</li>
-                        <li>API integrations (e.g., payment gateways, CRMs, chatbots)</li>
-                        <li>Advanced animations & interactivity</li>
-                        <li>Cloud storage up to 20GB</li>
-                        <li>Role-based admin panel/dashboard</li>
-                        <li>Multi-language support (optional)</li>
-                        <li>Staging environment for updates</li>
-                    </ul>
-                </div>
-
-                <div class="maintenance-section">
-                    <h4 class="maintenance-title">🔄 Monthly Maintenance (R2,000/month, optional):</h4>
-                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 0.5rem;">Pro Maintenance, plus:</p>
-                    <ul class="features-list">
-                        <li>Advanced database management</li>
-                        <li>Server management & cloud scaling</li>
-                        <li>Advanced analytics/reporting</li>
-                        <li>High-priority support</li>
-                    </ul>
-                </div>
-
-                <div class="example-section">
-                    <h4 class="example-title">🧩 Example:</h4>
-                    <p class="example-text">A real estate company with searchable property listings, agent logins, and appointment bookings.</p>
-                </div>
-
-                <button class="cta-button">Get Started</button>
+            <div style="position: absolute; right: 2rem;">
+                {% if user.is_authenticated %}
+                <a href="{% url 'user-posts' user.username %}" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Profile</a>
+                {% endif %}
             </div>
         </div>
+    </nav>
+
+    {% if messages %}
+    <div style="position:fixed; top:80px; left:50%; transform:translateX(-50%); z-index:2000; background:var(--surface-elevated); padding:1rem 2rem; border-radius:100px; border:1px solid var(--border);" id="notification">
+        {% for message in messages %}
+            <p style="margin:0; font-size:0.9rem; color:var(--text-main);">{{ message }}</p>
+        {% endfor %}
     </div>
-  <footer class="footer">
-    <div class="container2">
-      <div class="footer_inner">
-        <div class="c-footer">
-          <div class="layout">
-            <div class="layout_item w-50">
-              <p class="newsletter-description">Subscribe to our newsletter for the latest web development tips and exclusive offers.</p>
-              <div class="newsletter">
-                <form method="POST" action="#" class="newsletter">
-                  {% csrf_token %}
-                <input 
-                  type="email" 
-                  name="email"
-                  placeholder="Enter your email to subscribe" 
-                  class="newsletter-input"
-                >
-                <button type="submit" class="newsletter-btn">Subscribe</button>
-                </form>
-              </div>
+    <script>setTimeout(() => document.getElementById('notification').style.display='none', 5000);</script>
+    {% endif %}
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Floating Icons -->
+        <i class="fas fa-code floating-icon" style="top: 20%; left: 15%; font-size: 3rem;"></i>
+        <i class="fas fa-brain floating-icon" style="top: 30%; right: 20%; font-size: 4rem; animation-delay: 2s;"></i>
+        <i class="fas fa-chart-line floating-icon" style="bottom: 25%; left: 25%; font-size: 2.5rem; animation-delay: 1s;"></i>
+        <i class="fas fa-robot floating-icon" style="bottom: 30%; right: 15%; font-size: 3.5rem; animation-delay: 3s;"></i>
+
+        <div class="container">
+            <div class="hero-content reveal">
+                <h1 class="text-gradient">
+                    <span id="typewriter-text"></span><span class="typewriter-cursor"></span>
+                </h1>
+                <p class="lead" style="max-width: 800px; font-size: 1.25rem;">Kasi Algorithms is a digital transformation and AI solutions partner. We solve operational challenges and modernize systems.</p>
+                <div class="hero-cta" style="margin-top: 1rem;">
+                    <a href="#portfolio" class="btn btn-primary">See Our Work</a>
+                    <a href="mailto:kasialgorithms@gmail.com" class="btn btn-secondary">Discuss Your Project</a>
+                </div>
             </div>
-            <div class="layout_item w-25">
-              <nav class="c-nav-tool">
-                <h4 class="c-nav-tool_title">Menu</h4>
-                <ul class="c-nav-tool_list">
-                  <li>
-                    <a href="{% url 'about' %}" class="c-link">About Us</a>
-                  </li>
-                  <li>
-                    <a href="{% url 'prompt' %}" class="c-link">Contact Us</a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-            <div class="layout_item w-25">
-              <nav class="c-nav-tool">
-                <h4 class="c-nav-tool_title">Support</h4>
-                <ul class="c-nav-tool_list">
-                  <li class="c-nav-tool_item">
-                    <a href="{% url 'terms' %}#terms" class="c-link">Terms &amp; Conditions</a>
-                  </li>
-                  <li class="c-nav-tool_item">
-                    <a href="{% url 'terms' %}#privacy" class="c-link">Privacy Policy</a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-          <div class="layout c-2">
-            <div class="layout_item w-50">
-              <ul class="flex">
-                  <a href="{% url 'index' %}" class="logos"><img src="{% static 'images/KasiAlgo.png' %}" alt="Logo" width="250" height="50"></a>
-                </li>
-              </ul>
-            </div>
-            <div class="footer-section">
-              <h4 class="newsletter_title">Follow Us</h4>
-              <div class="social-icons">
-                  <a href="https://www.linkedin.com/company/109209189/" target="_blank" aria-label="LinkedIn">
-                      <i class="fab fa-linkedin"></i>
-                  </a>
-                  <a href="https://www.instagram.com/kasialgorithms/profilecard/?igsh=MTVzYXJpMzhnZWJ5bg==" target="_blank" aria-label="Instagram">
-                      <i class="fab fa-instagram"></i>
-                  </a>
-                  <a href="https://www.facebook.com/profile.php?id=61561356537135&mibextid=LQQJ4d" target="_blank" aria-label="Facebook">
-                      <i class="fab fa-facebook"></i>
-                  </a>
-              </div>
-          </div>
-            <div class="layout_item w-25" style="display: flex; justify-content: end; align-items: center;">
-              <button id="scrollToTopButton" style="background: none; border: none; cursor: pointer;">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36">
-                  <path fill="none" d="M0 0h24v24H0z" />
-                  <path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm1 10h3l-4-4-4 4h3v4h2v-4z" />
-                </svg>
-              </button>
-          </div>
-          </div>
         </div>
-      </div>
-      <div class="footer_copyright">
-        <p>&copy; 2024 Kasi Algorithms</p>
-      </div>
-    </div>
-  </footer>
-  <script>
-    let toggleButton = document.getElementById('toggleBtn');
-    let toggleContainer = document.getElementById('toggleSlider');
+    </section>
 
-    function showCategory(category) {
-        document.getElementById('animals').classList.remove('active-category');
-        document.getElementById('food').classList.remove('active-category');
+    <!-- Software Portfolio Carousel (Moved right after landing page) -->
+    <section class="section" id="portfolio" style="overflow: hidden; background: var(--surface);">
+        <div class="container">
+            <div class="carousel-header reveal">
+                <div class="carousel-title">
+                    <h2 class="text-gradient-brand">Built for the modern enterprise</h2>
+                </div>
+                <div class="carousel-desc">
+                    <p>Kasi Algorithms is engineered for scalability and trust. Whether you're a startup needing an MVP or a large enterprise modernizing your infrastructure, we build software that performs.</p>
+                </div>
+            </div>
+            
+            <div class="carousel-controls reveal">
+                <button class="carousel-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+            </div>
 
-        document.getElementById(category).classList.add('active-category');
-        if (category === 'food') {
-            toggleButton.style.transform = 'translateX(100%)';
-            toggleContainer.classList.add('active');
-        } else {
-            toggleButton.style.transform = 'translateX(0)';
-              toggleContainer.classList.remove('active');
-          }
-      }
-      document.getElementById('scrollToTopButton').addEventListener('click', function() {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
+            <div class="carousel-track reveal delay-1" id="sliderTrack">
+                <!-- Slide 1: Medoryn -->
+                <div class="carousel-card">
+                    <div class="carousel-image" style="background: url('{% static 'images/medoryn.png' %}') center/cover no-repeat; background-color: #eaeaea;"></div>
+                    <div class="carousel-content">
+                        <h3>Luneva</h3>
+                        <p style="margin-bottom: 1.5rem; max-width: 600px; color: rgba(255,255,255,0.9);">A healthcare inventory management platform for clinics to track stock, monitor expiry dates, and improve accountability while reducing waste.</p>
+                        <a href="https://luneva.vercel.app/" class="btn btn-primary" style="padding: 0.8rem 1.5rem; font-size: 0.9rem;">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Slide 2: CSHAW Hub -->
+                <div class="carousel-card">
+                    <div class="carousel-image" style="background: url('{% static 'images/cshaw.png' %}') center/cover no-repeat; background-color: #eaeaea;"></div>
+                    <div class="carousel-content">
+                        <h3>CSHAW Hub</h3>
+                        <p style="margin-bottom: 1.5rem; max-width: 600px; color: rgba(255,255,255,0.9);">A centralized volunteer management platform for tracking hours, event participation, and streamlining campus engagement.</p>
+                        <a href="https://cshaw.co.za/" class="btn btn-primary" style="padding: 0.8rem 1.5rem; font-size: 0.9rem;">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Slide 3: Kasi Ledger -->
+                <div class="carousel-card">
+                    <div class="carousel-image" style="background: url('{% static 'images/kasiledger.png' %}') center/cover no-repeat; background-color: #eaeaea;"></div>
+                    <div class="carousel-content">
+                        <h3>Kasi Ledger</h3>
+                        <p style="margin-bottom: 1.5rem; max-width: 600px; color: rgba(255,255,255,0.9);">An all-in-one business management tool for township enterprises, combining inventory, sales tracking, and AI-powered financial insights.</p>
+                        <a href="https://kasiledger.com/" class="btn btn-primary" style="padding: 0.8rem 1.5rem; font-size: 0.9rem;">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Slide 4: My Birthday Moments -->
+                <div class="carousel-card">
+                    <div class="carousel-image" style="background: url('{% static 'images/birthday.png' %}') center/cover no-repeat; background-color: #eaeaea;"></div>
+                    <div class="carousel-content">
+                        <h3>My Birthday Moments</h3>
+                        <p style="margin-bottom: 1.5rem; max-width: 600px; color: rgba(255,255,255,0.9);">A permanent digital time capsule that reimagines birthday wishes, creating a dedicated celebratory space that unlocks on your special day.</p>
+                        <a href="https://mybirthdaymoments.com/" class="btn btn-primary" style="padding: 0.8rem 1.5rem; font-size: 0.9rem;">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Building / Capabilities -->
+    <section class="section" id="capabilities">
+        <div class="container">
+            <div class="grid grid-2 reveal">
+                <div>
+                    <h2 class="text-gradient-brand">Trusted Technology Partner</h2>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 500px; margin-bottom: 2rem;">We don't just write code; we architect systems that scale. From complex enterprise integrations to AI-powered workflows, we bring Silicon Valley-grade engineering to your organization.</p>
+                </div>
+                <div class="trust-metrics">
+                    <div class="metric">
+                        <h4>99%</h4>
+                        <p>Uptime Reliability</p>
+                    </div>
+                    <div class="metric">
+                        <h4>100+</h4>
+                        <p>Systems Deployed</p>
+                    </div>
+                    <div class="metric">
+                        <h4>24/7</h4>
+                        <p>Enterprise Support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Service Pillars -->
+    <section class="section" id="services" style="background: var(--surface);">
+        <div class="container">
+            <h2 class="text-gradient reveal" style="text-align: center; margin-bottom: 4rem;">Core Capabilities</h2>
+            
+            <div class="grid grid-2">
+                <!-- Custom Software -->
+                <div class="service-card reveal delay-1">
+                    <div class="service-icon"><i class="fas fa-code"></i></div>
+                    <h3>Custom Software Development</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Mission-critical web applications, internal business systems, secure client portals, and robust management platforms engineered to exact specifications.</p>
+                    <ul style="list-style: none; color: var(--text-muted); font-size: 0.9rem;">
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--accent); margin-right: 0.5rem;"></i> Enterprise Web Apps</li>
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--accent); margin-right: 0.5rem;"></i> SaaS Architecture</li>
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--accent); margin-right: 0.5rem;"></i> Secure Portals</li>
+                    </ul>
+                </div>
+
+                <!-- AI Solutions -->
+                <div class="service-card reveal delay-2">
+                    <div class="service-icon"><i class="fas fa-brain"></i></div>
+                    <h3>AI Solutions & Automation</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Implement state-of-the-art artificial intelligence to automate workflows, process documents instantly, and deploy intelligent conversational agents.</p>
+                    <ul style="list-style: none; color: var(--text-muted); font-size: 0.9rem;">
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--accent); margin-right: 0.5rem;"></i> Intelligent Workflows</li>
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--accent); margin-right: 0.5rem;"></i> Predictive Analytics</li>
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--accent); margin-right: 0.5rem;"></i> Custom AI Assistants</li>
+                    </ul>
+                </div>
+
+                <!-- Digital Transformation -->
+                <div class="service-card reveal delay-1">
+                    <div class="service-icon"><i class="fas fa-network-wired"></i></div>
+                    <h3>Digital Transformation</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Modernize legacy infrastructure. We migrate analog operations into scalable, data-driven digital ecosystems that reduce overhead and increase agility.</p>
+                    <ul style="list-style: none; color: var(--text-muted); font-size: 0.9rem;">
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--accent); margin-right: 0.5rem;"></i> Legacy Modernization</li>
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--accent); margin-right: 0.5rem;"></i> Process Optimization</li>
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--accent); margin-right: 0.5rem;"></i> Cloud Migration</li>
+                    </ul>
+                </div>
+
+                <!-- Marketing Systems -->
+                <div class="service-card reveal delay-2">
+                    <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Marketing & Growth Platforms</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Data-centric platforms designed to capture leads, engage customers autonomously, and provide deep performance analytics for marketing teams.</p>
+                    <ul style="list-style: none; color: var(--text-muted); font-size: 0.9rem;">
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--accent); margin-right: 0.5rem;"></i> Lead Generation Systems</li>
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--accent); margin-right: 0.5rem;"></i> Marketing Automation</li>
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--accent); margin-right: 0.5rem;"></i> Performance Analytics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Empty placeholder to replace old carousel location -->
+
+    <!-- Modern Footer -->
+    <footer class="footer-modern">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col" style="grid-column: span 2;">
+                    <img src="{% static 'images/KasiAlgo.png' %}" alt="Kasi Algorithms" style="height: 40px; margin-bottom: 1.5rem;">
+                    <p style="color: var(--text-muted); max-width: 400px; margin-bottom: 2rem;">Architecting the future of African enterprise through rigorous software engineering, artificial intelligence, and digital transformation.</p>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="https://www.linkedin.com/company/109209189/" target="_blank" style="color: var(--text-muted); font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61561356537135&mibextid=LQQJ4d" target="_blank" style="color: var(--text-muted); font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/kasialgorithms/profilecard/?igsh=MTVzYXJpMzhnZWJ5bg==" target="_blank" style="color: var(--text-muted); font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h5>Services</h5>
+                    <ul class="footer-links">
+                        <li><a href="#services">Software Engineering</a></li>
+                        <li><a href="#services">AI Automation</a></li>
+                        <li><a href="#services">Digital Transformation</a></li>
+                        <li><a href="#services">Growth Platforms</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Company</h5>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+                        <li><a href="mailto:kasialgorithms@gmail.com">Contact</a></li>
+                        <li><a href="{% url 'terms' %}#terms">Terms & Conditions</a></li>
+                        <li><a href="{% url 'terms' %}#privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Kasi Algorithms. All rights reserved.</p>
+                <button id="scrollToTop" style="background: none; border: none; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem;">
+                    Back to top <i class="fas fa-arrow-up"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Intersection Observer & Interactions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Scroll Reveals
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Optional: stop observing once revealed
+                        // observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            // Navbar Scrolled State
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Scroll to Top
+            document.getElementById('scrollToTop').addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Typewriter Effect
+            const textToType = "We engineer intelligent software for modern businesses.";
+            const typeTarget = document.getElementById('typewriter-text');
+            let typeIndex = 0;
+            
+            function typeWriter() {
+                if (typeIndex < textToType.length) {
+                    typeTarget.innerHTML += textToType.charAt(typeIndex);
+                    typeIndex++;
+                    setTimeout(typeWriter, 40); // typing speed
+                }
+            }
+            // start typing slightly after load
+            setTimeout(typeWriter, 500);
+
+            // Carousel Slider Logic
+            const sliderTrack = document.getElementById('sliderTrack');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            if(sliderTrack && prevBtn && nextBtn) {
+                const scrollAmount = window.innerWidth > 768 ? 800 : 350; // approximate width of a card + gap
+
+                nextBtn.addEventListener('click', () => {
+                    sliderTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                });
+
+                prevBtn.addEventListener('click', () => {
+                    sliderTrack.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                });
+            }
         });
-      });
-        document.getElementById('hamburger').addEventListener('click', function() {
-          const navMenu = document.getElementById('nav-menu');
-          navMenu.classList.toggle('active');
-      });
-
-    function openModal(title, author, date, content) {
-      document.getElementById('modal-post-title').innerText = title;
-      document.getElementById('modal-post-author').innerText = 'By: ' + author;
-      document.getElementById('modal-post-date').innerText = date;
-      document.getElementById('modal-post-content').innerHTML = content;
-      document.getElementById('postModal').style.display = 'block';
-    }
-    
-    function closeModal() {
-        document.getElementById('postModal').style.display = 'none';
-    }
-    
-    window.onclick = function(event) {
-        const modal = document.getElementById('postModal');
-        if (event.target === modal) {
-            closeModal();
-        }
-    };
-</script>
+    </script>
 </body>
 </html>

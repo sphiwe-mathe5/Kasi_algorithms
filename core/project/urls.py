@@ -11,7 +11,7 @@ from core.models import Post
 from emails.models import EmailTemplate, SentEmail
 from submit.models import Profile
 from axes.models import AccessAttempt, AccessLog
-from core.views import index, subscribe, about, enquire,contact, terms, prompt,  optout, PostListView, PostDetailView, PostCreateView,PostUpdateView,PostDeleteView, UserPostListView
+from core.views import index, subscribe, about, enquire,contact, terms, optout, PostListView, PostDetailView, PostCreateView,PostUpdateView,PostDeleteView, UserPostListView
 
 class OTPAdmin(OTPAdminSite):
     pass
@@ -44,7 +44,6 @@ urlpatterns = [
     path('optout/', optout, name='optout'),
     path('contact/', contact, name='contact'),
     path('terms/', terms, name='terms'),
-    path('prompt/', prompt, name='prompt'),
     path('password-reset/', auth_views.PasswordResetView.as_view(template_name='submit/password_reset.html'),name='password_reset'),
     path('password-reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='submit/password_reset_done.html'),name='password_reset_done'),
     path('password-reset-confirm/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name='submit/password_reset_confirm.html'),name='password_reset_confirm'),
