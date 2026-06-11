@@ -169,6 +169,9 @@ def terms(request):
 
 
 
+def nazire(request):
+    return render(request, 'core/nazire.html')
+    
 def enquire(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -237,4 +240,3 @@ def optout(request):
         return redirect('index')  # Redirect to home after form submission
 
     return redirect('index')  # If not a POST request, redirect to index or another appropriate page
-#ymws rmpb vhre njwh

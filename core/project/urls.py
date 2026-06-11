@@ -11,7 +11,11 @@ from core.models import Post
 from emails.models import EmailTemplate, SentEmail
 from submit.models import Profile
 from axes.models import AccessAttempt, AccessLog
+<<<<<<< HEAD
 from core.views import index, subscribe, about, enquire,contact, terms, optout, PostListView, PostDetailView, PostCreateView,PostUpdateView,PostDeleteView, UserPostListView
+=======
+from core.views import index, subscribe, about, enquire,contact, terms, prompt,  optout, nazire, PostListView, PostDetailView, PostCreateView,PostUpdateView,PostDeleteView, UserPostListView
+>>>>>>> 2daad3386d454c864766972fec0e058a254ca7d9
 
 class OTPAdmin(OTPAdminSite):
     pass
@@ -38,6 +42,7 @@ urlpatterns = [
     path('user/<str:username>', UserPostListView.as_view(), name='user-posts'),
     path('subscribe/', subscribe, name='subscribe'),
     path('about/', about, name='about'),
+    path('nazire/', nazire, name='nazire'),
     path('', include('submit.urls')),
     path('emails/', include('emails.urls')),
     path('enquire/', enquire, name='enquire'),
